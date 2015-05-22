@@ -14,3 +14,83 @@
  *= require_self
  */
 @import "materialize";
+
+//colors
+$black: #000;
+$color_alabaster_approx: #f9f9f9;
+$black_100: rgba(0, 0, 0, 1);
+
+//urls
+$url_0: url(bg.png);
+
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+}
+h1 {
+	font-size: 5rem;
+}
+.header {
+	display: inline-block;
+	width: 500px;
+	height: 300px;
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	margin-left: -250px;
+}
+nav {
+	background-color: rgba(0,0,0,0);
+	box-shadow: none;
+}
+.nav-el {
+	font-size: 1.2rem;
+	line-height: 1.8rem;
+	margin: 0.82rem 0 0.656rem 0;
+}
+.main-bag {
+	position: relative;
+	height: 100%;
+	text-align: center;
+	background: $url_0 no-repeat center center;
+	background-size: cover;
+}
+.valign-wrapper {
+	justify-content: center;
+	align-content: flex-end;
+}
+#news {
+	.card {
+		min-height: 300px;
+	}
+	.card-action {
+		border: none;
+		padding: 0 20px;
+	}
+	.card-content {
+		min-height: 230px;
+	}
+}
+.card a.btn-ghost {
+	margin-bottom: 10px;
+	background: none;
+	border: 1px solid;
+	border-color: $black;
+	color: $black;
+	box-shadow: none;
+	&:hover {
+		background-color: $color_alabaster_approx;
+		color: $black_100;
+	}
+}
+.row h4.col {
+	padding: 10px 0;
+	border-top: 1px solid $black;
+	border-bottom: 1px solid $black;
+}
+
+.card.small .card-image {
+    height: auto;
+}

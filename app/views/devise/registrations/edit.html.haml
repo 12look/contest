@@ -1,0 +1,31 @@
+%h2.center   Редактирование
+.row
+  .col.s12.m6.l4.offset-m3.offset-l4
+    .card-panel
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+        .row
+          = devise_error_messages!
+          .input-field.col.s12
+            = f.label :email
+            = f.email_field :email, autofocus: true, class: 'validator'
+          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+            %div
+              Currently waiting confirmation for: #{resource.unconfirmed_email}
+          .input-field.col.s12
+            = f.label :password
+            = f.password_field :password, autocomplete: "off"
+            %i (оставьте пустым, если не желаете изменить)
+          .input-field.col.s12
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: "off"
+          .input-field.col.s12
+            = f.label :current_password
+            = f.password_field :current_password, autocomplete: "off"
+            %i (введите текущий пароль для выполнения изменений)
+          .input-field.col.s12.center
+            = f.submit "Редактировать", class: 'btn'
+
+.row.center
+  %p
+    Не рады? #{button_to "Самоуничтожиться", registration_path(resource_name), data: { confirm: "Вы серьезно?" }, method: :delete}
+  = link_to "Назад", :back

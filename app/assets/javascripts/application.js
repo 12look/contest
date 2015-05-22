@@ -11,6 +11,19 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+//= require materialize-sprockets
 //= require turbolinks
 //= require_tree .
+
+(function($){
+  $(function(){
+
+    $('.button-collapse').sideNav();
+    
+    $('#scroll').on('click', function(e){
+  		$('html,body').stop().animate({ scrollTop: $('#news').offset().top }, 1000);
+  		e.preventDefault();
+	});
+
+  }); // end of document ready
+})(jQuery); // end of jQuery name space

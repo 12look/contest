@@ -1,0 +1,22 @@
+%h2.center Регистрация
+.row
+  .col.s12.m6.l4.offset-m3.offset-l4
+    .card-panel
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        .row
+          = devise_error_messages!
+          .input-field.col.s12
+            = f.label :email
+            = f.email_field :email, autofocus: true, class: 'validate'
+          .input-field.col.s12
+            = f.label :password
+            = f.password_field :password, autocomplete: "off", class: 'validate'
+            - if @validatable
+              %em
+                (#{@minimum_password_length} символов минимум)
+          .input-field.col.s12
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: "off"
+          .input-field.col.s12.center
+            = f.submit "Регистрация", class: "btn"
+      = render "devise/shared/links"

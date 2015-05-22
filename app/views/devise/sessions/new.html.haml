@@ -1,0 +1,22 @@
+%h2.center Вход
+.row
+  .col.s12.m6.l4.offset-m3.offset-l4
+    .card-panel
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .row
+          .input-field.col.s12
+            %i.mdi-action-account-circle.prefix
+            = f.label :email
+            = f.email_field :email, autofocus: true, id: 'user_prefix', class: 'validate'
+          .input-field.col.s12
+            %i.mdi-communication-vpn-key.prefix
+            = f.label :password
+            = f.password_field :password, autocomplete: "off", id: 'passwd_prefix', class: 'validate'
+          - if devise_mapping.rememberable?
+            .input-field.col.s12
+              = f.check_box :remember_me
+              = f.label :remember_me
+          .input-field.col.s12.center
+            = f.submit "Войти", class: "btn"
+            //%i.mdi-content-send.right
+      = render "devise/shared/links"

@@ -46,4 +46,4 @@ end
 gem 'devise', '~> 3.4.1'
 gem 'materialize-sass', '~> 0.96.2'
 gem 'haml', '~> 4.0.6'
-
+gem 'html2haml', '~> 2.0.0'
