@@ -6,8 +6,6 @@
     / Let browser know website is optimized for mobile
     %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
     = stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => true
-    :javascript
-      document.createElement('video');document.createElement('audio');document.createElement('track');
     = csrf_meta_tags
   %body{:class => "body-#{controller_name}"}
     = yield
