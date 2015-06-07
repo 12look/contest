@@ -1,5 +1,5 @@
 class AddTypeToCategories < ActiveRecord::Migration
   def change
-    add_column :categories, :isvideo, :boolean, :default => 0
+    add_column :categories, :isvideo, :boolean, :default => false
   end
 end
