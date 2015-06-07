@@ -1,13 +1,14 @@
 class WorksController < ApplicationController
   before_action :set_work, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show, :update_works]
+  before_action :authorized_user, only: [:edit, :update, :destroy]
 
 
 
   # GET /works
   # GET /works.json
   def index
-    @works = Work.all
+    @works = Work.all.order('created_at DESC')
 
     if request.xhr?
       render partial: "work", collection: @works
@@ -81,6 +82,11 @@ class WorksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_work
       @work = Work.find(params[:id])
+    end
+
+    def authorized_user
+      @work = current_user.links.find_by(id: params[:id])
+      redirect_to works_path, notice: "Not authorized to edit this link" if @work.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

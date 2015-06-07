@@ -19,14 +19,14 @@
           %li
             =link_to "Аккаунт", edit_user_registration_path, class: 'nav-el'
           %li
-            =link_to "Выход", destroy_user_session_path, :method => :delete, class: 'nav-el'
+            =link_to "Выход", destroy_user_session_path, class: 'nav-el'
         %ul#nav-mobile.side-nav
           %li
             =link_to "Добавить работу", new_work_path, class: 'nav-el'
           %li
             =link_to "Аккаунт", edit_user_registration_path
           %li
-            =link_to "Выход", destroy_user_session_path, :method => :delete
+            =link_to "Выход", destroy_user_session_path
         %a.button-collapse{"data-activates" => "nav-mobile", :href => "#"}
           %i.mdi-navigation-menu
   .header
@@ -68,7 +68,7 @@
                 %h5.black-text
                   = work.name
                 %p
-                  = work.user.email
+                  = work.user.first_name + " " + work.user.last_name
                 %p
                   = work.created_at.to_formatted_s(:long)
     .row.center

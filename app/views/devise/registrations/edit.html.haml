@@ -6,8 +6,14 @@
         .row
           = devise_error_messages!
           .input-field.col.s12
+            = f.label "Имя"
+            = f.text_field :first_name, class: 'validate'
+          .input-field.col.s12
+            = f.label "Фамилия"
+            = f.text_field :last_name, class: 'validate'
+          .input-field.col.s12
             = f.label :email
-            = f.email_field :email, autofocus: true, class: 'validator'
+            = f.email_field :email, class: 'validator'
           - if devise_mapping.confirmable? && resource.pending_reconfirmation?
             %div
               Currently waiting confirmation for: #{resource.unconfirmed_email}

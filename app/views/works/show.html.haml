@@ -12,7 +12,7 @@
 			= simple_format @work.description
 		%p
 			%strong Добавил: 
-			= @work.user.email
+			= @work.user.first_name + " " + @work.user.last_name 
 		%p
 			%strong Категория: 
 			= @work.category.name

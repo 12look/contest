@@ -6,8 +6,14 @@
         .row
           = devise_error_messages!
           .input-field.col.s12
+            = f.label "Имя"
+            = f.text_field :first_name, class: 'validate'
+          .input-field.col.s12
+            = f.label "Фамилия"
+            = f.text_field :last_name, class: 'validate'
+          .input-field.col.s12
             = f.label :email
-            = f.email_field :email, autofocus: true, class: 'validate'
+            = f.email_field :email, class: 'validate'
           .input-field.col.s12
             = f.label :password
             = f.password_field :password, autocomplete: "off", class: 'validate'
