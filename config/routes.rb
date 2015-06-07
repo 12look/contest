@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+  resources :works
+  resources :categories
   devise_for :users
+
+  get '/cat/:category_id' => 'works#update_works'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

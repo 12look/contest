@@ -1,0 +1,25 @@
+.container
+	.row.card
+		.col.s12
+			.center
+				= image_tag @work.file.url(:medium)
+	.row.card-panel.grey.lighten-4
+		- if @work.user == current_user
+			= link_to 'Редактировать', edit_work_path(@work), class: "btn-flat waves-effect waves-teal"
+			= link_to 'Удалить', @link, method: :delete, data: { confirm: 'Серьезно?' }, class: "btn-flat waves-effect waves-teal"
+		%h4= @work.name
+		%p
+			= simple_format @work.description
+		%p
+			%strong Добавил: 
+			= @work.user.email
+		%p
+			%strong Категория: 
+			= @work.category.name
+	- if @work.category.isvideo
+		.row.card
+			.col.s12.m12.l12
+				.valign-wrapper
+					.valign
+						= video_tag(["#{@work.video.url}"], :controls => true)
+	= link_to 'Главная', root_path

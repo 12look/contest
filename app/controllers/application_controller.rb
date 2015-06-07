@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
+  	@works = Work.all.order('created_at DESC').limit(4)
   	render 'home/index'
   end
 end

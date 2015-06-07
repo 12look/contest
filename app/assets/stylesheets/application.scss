@@ -33,21 +33,23 @@ h1 {
 	font-size: 5rem;
 }
 .header {
+	background-color: rgba(1,1,1,0.3);
+	border-radius: 10px;
 	display: inline-block;
-	width: 500px;
-	height: 300px;
+	width: 480px;
+	height: 250px;
 	position: absolute;
 	top: 30%;
 	left: 50%;
-	margin-left: -250px;
+	margin-left: -240px;
 }
 nav {
-	background-color: rgba(0,0,0,0);
+	background-color: rgba(0,0,0,0.1);
 	box-shadow: none;
 }
 .nav-el {
 	font-size: 1.2rem;
-	line-height: 1.8rem;
+	line-height: 2.7rem;
 	margin: 0.82rem 0 0.656rem 0;
 }
 .main-bag {
@@ -87,10 +89,47 @@ nav {
 }
 .row h4.col {
 	padding: 10px 0;
-	border-top: 1px solid $black;
-	border-bottom: 1px solid $black;
+	border-top: 1px solid color("grey", "base");
+	border-bottom: 1px solid color("grey", "base");
 }
 
 .card.small .card-image {
-    height: auto;
+    height: 100%;
+}
+
+.card .card-image img {
+	width: auto;
+}
+
+.card.small {
+    height: 100%;}
+.card.small .card-image {
+	max-width: 100%;
+	padding: 5px;
+}
+
+.card-over {
+	position: absolute;
+	top: 0px;
+	bottom: 30px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 40px;
+	line-height: 1;
+	text-decoration: none;
+	background: #FFF none repeat scroll 0% 0%;
+	overflow: hidden;
+	z-index: 3;
+	box-sizing: border-box;
+	opacity: 0;
+	&:hover {
+		opacity: 0.9;
+	}
+	p {
+		color: color("grey", "darken-1");
+		font-weight: 400;
+		font-size: 1.2rem;
+	}
 }

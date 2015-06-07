@@ -1,0 +1,11 @@
+.col.s12.m6.l3
+  .card.small
+    = image_tag work.file.url(:thumb), class: 'center-block card-image'
+    = link_to (work), class: 'card-over' do
+      .center
+        %h5.black-text
+          = work.name
+        %p
+          = work.user.email
+        %p
+          = work.created_at.to_formatted_s(:long)

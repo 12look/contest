@@ -1,0 +1,31 @@
+.row
+  .col.s12.m6.l4.offset-m3.offset-l4
+    .card-panel
+      = form_for(@work) do |f|
+        .row
+          - if @work.errors.any?
+            #error_explanation
+              %ul
+                - @work.errors.full_messages.each do |message|
+                  %li= message
+          .input-field.col.s12
+            = f.label :name
+            = f.text_field :name
+          .input-field.col.s12
+            = f.text_area :description, class: 'materialize-textarea'
+            = f.label :description
+          .input-field.col.s12
+            = f.select :category_id, Category.all.collect {|a| [a.name, a.id, {'data-type'=>a.isvideo}]}
+            = f.label :category_id
+          .file-field.input-field.col.s12
+            = f.text_field :file, class: 'file-path validate'
+            .btn
+              %span Скрин
+              = f.file_field :file
+          .file-field.input-field.col.s12.hide#video
+            = f.text_field :video, class: 'file-path validate'
+            .btn
+              %span Видео
+              = f.file_field :video
+          .input-field.col.s12.center
+            = f.submit 'Добавить', class: 'btn'

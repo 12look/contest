@@ -5,13 +5,19 @@
     / Let browser know website is optimized for mobile
     %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
     = stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    :javascript
+      document.createElement('video');document.createElement('audio');document.createElement('track');
     = csrf_meta_tags
-  %body
+  %body{:class => "body-#{controller_name}"}
     = yield
-  - if current_page?(root_url)
-    %footer.page-footer.teal
-      .footer-copyright
-        .container.center
-          By VPI with
-          %i.mdi-action-favorite
+    - if current_page?(root_url)
+      %footer.page-footer.teal
+        .footer-copyright
+          .container.center
+            By VPI with
+            %i.mdi-action-favorite
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    - unless flash.empty?
+      -flash.each do |f| 
+        :javascript
+          Materialize.toast('#{f[1]}', 4000)
