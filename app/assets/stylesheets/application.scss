@@ -33,15 +33,8 @@ h1 {
 	font-size: 5rem;
 }
 .header {
-	background-color: rgba(1,1,1,0.3);
-	border-radius: 10px;
-	display: inline-block;
-	width: 480px;
-	height: 250px;
-	position: absolute;
-	top: 30%;
-	left: 50%;
-	margin-left: -240px;
+	padding-top: 20%;
+	margin-bottom: 10%;
 }
 nav {
 	background-color: rgba(0,0,0,0.1);
@@ -58,10 +51,6 @@ nav {
 	text-align: center;
 	background: $url_0 no-repeat center center;
 	background-size: cover;
-}
-.valign-wrapper {
-	justify-content: center;
-	align-content: flex-end;
 }
 #news {
 	.card {

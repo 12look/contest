@@ -1,6 +1,8 @@
 %header.main-bag
   %nav{:role => "navigation"}
     .nav-wrapper.container.right
+      %a.button-collapse.right{"data-activates" => "nav-mobile", :href => "#"}
+        %i.mdi-navigation-menu
       - unless user_signed_in?
         %ul.right.hide-on-med-and-down
           %li
@@ -27,14 +29,12 @@
             =link_to "Аккаунт", edit_user_registration_path
           %li
             =link_to "Выход", destroy_user_session_path
-        %a.button-collapse{"data-activates" => "nav-mobile", :href => "#"}
-          %i.mdi-navigation-menu
-  .header
-    %br/
-    %h1.grey-text.text-lighten-5 Think Deeper
-    %br/
-    %a#scroll.btn-large.btn-floating.materialize-red.lighten-1.waves-effect.waves-light{:href => "#works"}
-      %i.mdi-navigation-expand-more
+  .container
+    .row.header
+      .col.m12
+        %h1.valign.grey-text.text-lighten-5 Think Deeper
+        %a#scroll.valign.btn-large.btn-floating.materialize-red.lighten-1.waves-effect.waves-light{:href => "#works"}
+          %i.mdi-navigation-expand-more
 %section#news.container
   .section
     .row
