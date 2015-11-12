@@ -15,6 +15,18 @@
  */
 @import "materialize";
 
+@font-face{
+  font-family:'Open Sans';
+  font-style:normal;
+  font-weight:400;
+  src:local('Open Sans'),local('OpenSans'),url(https://fonts.gstatic.com/s/opensans/v13/RjgO7rYTmqiVp7vzi-Q5UaCWcynf_cDxXwCLxiixG1c.ttf) format('truetype')}
+
+@font-face{
+  font-family:'Open Sans';
+  font-style:normal;
+  font-weight:700;
+  src:local('Open Sans Bold'),local('OpenSans-Bold'),url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzPOEPOIfcPv-fZ-WyMUtx48.ttf) format('truetype')}
+
 //colors
 $black: #000;
 $color_alabaster_approx: #f9f9f9;
@@ -24,101 +36,185 @@ $black_100: rgba(0, 0, 0, 1);
 $url_0: url(bg.png);
 
 html {
-	height: 100%;
+  height: 100%;
 }
+  
 body {
-	height: 100%;
+  height: 100%;
 }
+
+.container {
+  min-width: 320px;
+}
+
 h1 {
-	font-size: 5rem;
+  font-family: "Open Sans";
+  font-weight: 700;
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-shadow: 3px 1px 5px #000;
+
+  @media only screen and (max-width: 480px) {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
 }
 .header {
-	padding-top: 20%;
-	margin-bottom: 10%;
+  padding: 150px 0;
+  
+  @media only screen and (min-width: 768px) {
+    padding-top: 200px;
+    padding-bottom: 350px;
+  }
 }
 nav {
-	background-color: rgba(0,0,0,0.1);
-	box-shadow: none;
+  background-color: rgba(0,0,0,0.1);
+  box-shadow: none;
+  height: 70px;
+  line-height: 70px;
 }
 .nav-el {
-	font-size: 1.2rem;
-	line-height: 2.7rem;
-	margin: 0.82rem 0 0.656rem 0;
+  font-size: 1.2rem;
+  line-height: 3.2rem;
+  margin: 0.82rem 0 0.656rem 0;
 }
 .main-bag {
-	position: relative;
-	height: 100%;
-	text-align: center;
-	background: $url_0 no-repeat center center;
-	background-size: cover;
+  text-align: center;
+  background: $url_0 no-repeat center center;
+  background-size: cover;
 }
 #news {
-	.card {
-		min-height: 300px;
-	}
-	.card-action {
-		border: none;
-		padding: 0 20px;
-	}
-	.card-content {
-		min-height: 230px;
-	}
+  .card {
+    min-height: 300px;
+  }
+  .card-action {
+    border: none;
+    padding: 0 20px;
+  }
+  .card-content {
+    min-height: 230px;
+  }
 }
 .card a.btn-ghost {
-	margin-bottom: 10px;
-	background: none;
-	border: 1px solid;
-	border-color: $black;
-	color: $black;
-	box-shadow: none;
-	&:hover {
-		background-color: $color_alabaster_approx;
-		color: $black_100;
-	}
+  margin-bottom: 10px;
+  background: none;
+  border: 1px solid;
+  border-color: $black;
+  color: $black;
+  box-shadow: none;
+  &:hover {
+    background-color: $color_alabaster_approx;
+    color: $black_100;
+  }
 }
 .row h4.col {
-	padding: 10px 0;
-	border-top: 1px solid color("grey", "base");
-	border-bottom: 1px solid color("grey", "base");
+  padding: 10px 0;
+  border-top: 1px solid color("grey", "base");
+  border-bottom: 1px solid color("grey", "base");
 }
 
 .card.small .card-image {
-    height: 100%;
+  height: 100%;
 }
 
 .card .card-image img {
-	width: auto;
+  width: auto;
 }
 
 .card.small {
-    height: 100%;}
+  height: 100%;}
 .card.small .card-image {
-	max-width: 100%;
-	padding: 5px;
+  max-width: 100%;
+  padding: 5px;
 }
 
 .card-over {
-	position: absolute;
-	top: 0px;
-	bottom: 30px;
-	left: 0px;
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding: 40px;
-	line-height: 1;
-	text-decoration: none;
-	background: #FFF none repeat scroll 0% 0%;
-	overflow: hidden;
-	z-index: 3;
-	box-sizing: border-box;
-	opacity: 0;
-	&:hover {
-		opacity: 0.9;
-	}
-	p {
-		color: color("grey", "darken-1");
-		font-weight: 400;
-		font-size: 1.2rem;
-	}
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 40px;
+  line-height: 1;
+  font-family:"Open Sans";
+  text-decoration: none;
+  background: #fff none repeat scroll 0% 0%;
+  overflow: hidden;
+  z-index: 3;
+  box-sizing: border-box;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+  opacity: 0;
+  &:hover {
+    opacity: 0.95;
+  }
+  p {
+    color: color("grey", "darken-1");
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+}
+
+.file-field .btn {
+  left: 10px;
+}
+
+[type="checkbox"] + label {
+  padding-left: 25px;
+}
+
+[type="checkbox"] + label:before {
+  left: -10px;
+}
+
+[type="checkbox"]:checked + label:before {
+  left: -10px;
+}
+
+.select-wrapper + label {
+  font-size: 1rem;
+}
+
+.file-input {
+  margin: 15px 0;
+}
+
+.file-input label {
+  display: block;
+  font-size: 1rem;
+}
+
+.loading-wrap {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,.5);
+  z-index: 1001;
+}
+
+#loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: 64px;
+  background: url(loader.GIF) transparent;
+  width: 128px;
+  height: 128px;
+  z-index: 1002;
+}
+
+#works {
+  position: relative;
+}
+
+.small-preview {
+  margin: 10px 0;
+
+  &:hover {
+    @extend .z-depth-3
+  }
 }

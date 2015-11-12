@@ -11,14 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607122606) do
+ActiveRecord::Schema.define(version: 20151111074450) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.boolean  "isvideo",    limit: 1,   default: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
+
+  create_table "images", force: :cascade do |t|
+    t.integer  "work_id",            limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+  end
+
+  add_index "images", ["work_id"], name: "index_images_on_work_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -41,25 +52,22 @@ ActiveRecord::Schema.define(version: 20150607122606) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "works", force: :cascade do |t|
-    t.string   "name",               limit: 255
-    t.text     "description",        limit: 65535
-    t.integer  "user_id",            limit: 4
-    t.integer  "category_id",        limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.string   "file_file_name",     limit: 255
-    t.string   "file_content_type",  limit: 255
-    t.integer  "file_file_size",     limit: 4
+    t.string   "name",              limit: 255
+    t.text     "description",       limit: 65535
+    t.integer  "user_id",           limit: 4
+    t.integer  "category_id",       limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "file_file_name",    limit: 255
+    t.string   "file_content_type", limit: 255
+    t.integer  "file_file_size",    limit: 4
     t.datetime "file_updated_at"
-    t.string   "video_file_name",    limit: 255
-    t.string   "video_content_type", limit: 255
-    t.integer  "video_file_size",    limit: 4
-    t.datetime "video_updated_at"
   end
 
   add_index "works", ["category_id"], name: "index_works_on_category_id", using: :btree
   add_index "works", ["user_id"], name: "index_works_on_user_id", using: :btree
 
+  add_foreign_key "images", "works"
   add_foreign_key "works", "categories"
   add_foreign_key "works", "users"
 end

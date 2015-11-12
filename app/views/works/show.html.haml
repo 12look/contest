@@ -1,25 +1,28 @@
 .container
-	.row.card
-		.col.s12
-			.center
-				= image_tag @work.file.url(:medium)
-	.row.card-panel.grey.lighten-4
-		- if @work.user == current_user
-			= link_to 'Редактировать', edit_work_path(@work), class: "btn-flat waves-effect waves-teal"
-			= link_to 'Удалить', @link, method: :delete, data: { confirm: 'Серьезно?' }, class: "btn-flat waves-effect waves-teal"
-		%h4= @work.name
-		%p
-			= simple_format @work.description
-		%p
-			%strong Добавил: 
-			= @work.user.first_name + " " + @work.user.last_name 
-		%p
-			%strong Категория: 
-			= @work.category.name
-	- if @work.category.isvideo
-		.row.card
-			.col.s12.m12.l12
-				.valign-wrapper
-					.valign
-						= video_tag(["#{@work.video.url}"], :controls => true)
-	= link_to 'Главная', root_path
+  .row.card
+    .col.s12
+      .center
+        = image_tag @work.file.url(:medium), class: 'responsive-img'
+  - if @work.images.any?
+    .row.card
+      - @work.images.each do |image|
+        .col.s12.m6.l3.center
+          =link_to image_tag(image.image.url(:thumb), class: 'responsive-img small-preview'), "#modal#{image.id}", {class: 'modal-trigger'}
+        -#Modal for preview
+        %div{ id: "modal#{image.id}", class: 'modal' }
+          .modal-content
+            =image_tag image.image.url(:original), class: 'responsive-img'
+  .row.card-panel.grey.lighten-4
+    - if @work.user == current_user
+      = link_to 'Редактировать', edit_work_path(@work), class: 'btn-flat waves-effect waves-teal'
+      = link_to 'Удалить', @link, method: :delete, data: { confirm: 'Серьезно?' }, class: 'btn-flat waves-effect waves-teal'
+    %h5= @work.name
+    %p
+      = simple_format @work.description
+    %p
+      %strong Добавил:
+      =@work.user.first_name + ' ' + @work.user.last_name
+    %p
+      %strong Категория:
+      = @work.category.name
+  = link_to 'Главная', root_path

@@ -5,27 +5,34 @@
         .row
           - if @work.errors.any?
             #error_explanation
-              %ul
-                - @work.errors.full_messages.each do |message|
-                  %li= message
+              .col.s12
+                Ошибка добавления:
+                %ul
+                  - @work.errors.full_messages.each do |message|
+                    %li= message
           .input-field.col.s12
-            = f.label :name
+            = f.label :name, 'Название'
             = f.text_field :name
           .input-field.col.s12
             = f.text_area :description, class: 'materialize-textarea'
-            = f.label :description
+            = f.label :description, 'Описание'
           .input-field.col.s12
-            = f.select :category_id, Category.all.collect {|a| [a.name, a.id, {'data-type'=>a.isvideo}]}
-            = f.label :category_id
-          .file-field.input-field.col.s12
-            = f.text_field :file, class: 'file-path validate'
-            .btn
-              %span Скрин
-              = f.file_field :file
-          .file-field.input-field.col.s12.hide#video
-            = f.text_field :video, class: 'file-path validate'
-            .btn
-              %span Видео
-              = f.file_field :video
+            = f.select :category_id, Category.all.collect {|a| [a.name, a.id]}
+            = f.label :category_id, 'Категория'
+          - if @work.file.exists?
+            = image_tag @work.file.url(:thumb), class: 'col s6', height: '200px'
+          .file-input.col.s12
+            = f.label :file, 'Основной скриншот'
+            = f.file_field :file
+          .file-input.col.s12
+            = f.label :file, 'Дополнительные скриншоты'
+            = render partial: 'image_edit', collection: @work.images, locals: { builder: f }
+            = link_to_add_fields('Добавить скрин', f, 'images')
+          -#.file-field.input-field.col.s12
+          -#  .btn
+          -#    %span Скрин
+          -#    = f.file_field :file
+          -#  .file-path-wrapper.col.s12.right
+          -#    = f.text_field :file, class: 'file-path validate'
           .input-field.col.s12.center
-            = f.submit 'Добавить', class: 'btn'
+            = f.submit (@work.new_record? ? 'Добавить' : 'Редактировать'), class: 'btn'

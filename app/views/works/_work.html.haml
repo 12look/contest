@@ -6,6 +6,8 @@
         %h5.black-text
           = work.name
         %p
-          = work.user.email
+          %i.mdi-action-face-unlock.prefix
+          = work.user.first_name + ' ' + work.user.last_name
         %p
+          %i.mdi-action-today.prefix
           = work.created_at.to_formatted_s(:long)

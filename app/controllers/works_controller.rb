@@ -45,7 +45,7 @@ class WorksController < ApplicationController
 
     respond_to do |format|
       if @work.save
-        format.html { redirect_to @work, notice: 'Work was successfully created.' }
+        format.html { redirect_to @work, notice: 'Работа создана успешно' }
         format.json { render :show, status: :created, location: @work }
       else
         format.html { render :new }
@@ -59,7 +59,7 @@ class WorksController < ApplicationController
   def update
     respond_to do |format|
       if @work.update(work_params)
-        format.html { redirect_to @work, notice: 'Work was successfully updated.' }
+        format.html { redirect_to @work, notice: 'Работа обновлена' }
         format.json { render :show, status: :ok, location: @work }
       else
         format.html { render :edit }
@@ -85,12 +85,14 @@ class WorksController < ApplicationController
     end
 
     def authorized_user
-      @work = current_user.links.find_by(id: params[:id])
-      redirect_to works_path, notice: "Not authorized to edit this link" if @work.nil?
+      @work = current_user.works.find_by(id: params[:id])
+      redirect_to works_path, notice: "Вы не авторизованы" if @work.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
-      params.require(:work).permit(:name, :description, :user_id, :category_id, :file, :video)
+      params.require(:work).permit(
+          :name, :description, :user_id, :category_id, :file,
+          images_attributes: [ :image, :_destroy, :id ])
     end
 end

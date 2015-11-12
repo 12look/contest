@@ -6,10 +6,10 @@
         .row
           = devise_error_messages!
           .input-field.col.s12
-            = f.label "Имя"
+            = f.label :first_name
             = f.text_field :first_name, class: 'validate'
           .input-field.col.s12
-            = f.label "Фамилия"
+            = f.label :last_name
             = f.text_field :last_name, class: 'validate'
           .input-field.col.s12
             = f.label :email

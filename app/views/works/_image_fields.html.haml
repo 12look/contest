@@ -1,0 +1,6 @@
+.image-field
+  .input-field.col.s12
+    = f.file_field :image
+  .input-field.col.s12
+    = f.hidden_field :_destroy
+    = link_to 'Удалить поле', '#', class: 'remove_fields'

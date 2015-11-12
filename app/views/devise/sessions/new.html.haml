@@ -7,11 +7,11 @@
           .input-field.col.s12
             %i.mdi-action-account-circle.prefix
             = f.label :email
-            = f.email_field :email, id: 'user_prefix', class: 'validate'
+            = f.email_field :email
           .input-field.col.s12
             %i.mdi-communication-vpn-key.prefix
             = f.label :password
-            = f.password_field :password, autocomplete: "off", id: 'passwd_prefix', class: 'validate'
+            = f.password_field :password
           - if devise_mapping.rememberable?
             .input-field.col.s12
               = f.check_box :remember_me

@@ -1,40 +1,41 @@
 %header.main-bag
-  %nav{:role => "navigation"}
-    .nav-wrapper.container.right
-      %a.button-collapse.right{"data-activates" => "nav-mobile", :href => "#"}
+  %nav{role: 'navigation'}
+    .nav-wrapper.container
+      %a.button-collapse.right{'data-activates' => 'nav-mobile', href: '#'}
         %i.mdi-navigation-menu
       - unless user_signed_in?
         %ul.right.hide-on-med-and-down
           %li
-            =link_to "Вход", new_user_session_path, class: 'nav-el'
+            =link_to 'Вход', new_user_session_path, class: 'nav-el'
           %li
-            =link_to "Регистрация", new_user_registration_path, class: 'nav-el'
+            =link_to 'Регистрация', new_user_registration_path, class: 'nav-el'
         %ul#nav-mobile.side-nav
           %li
-            =link_to "Вход", new_user_session_path
+            =link_to 'Вход', new_user_session_path
           %li
-            =link_to "Регистрация", new_user_registration_path
+            =link_to 'Регистрация', new_user_registration_path
       - else
         %ul.right.hide-on-med-and-down
           %li
-            =link_to "Добавить работу", new_work_path, class: 'nav-el'
+            =link_to 'Добавить работу', new_work_path, class: 'nav-el'
           %li
-            =link_to "Аккаунт", edit_user_registration_path, class: 'nav-el'
+            =link_to 'Аккаунт', edit_user_registration_path, class: 'nav-el'
           %li
-            =link_to "Выход", destroy_user_session_path, class: 'nav-el'
+            =link_to 'Выход', destroy_user_session_path, class: 'nav-el'
         %ul#nav-mobile.side-nav
           %li
-            =link_to "Добавить работу", new_work_path, class: 'nav-el'
+            =link_to 'Добавить работу', new_work_path, class: 'nav-el'
           %li
-            =link_to "Аккаунт", edit_user_registration_path
+            =link_to 'Аккаунт', edit_user_registration_path
           %li
-            =link_to "Выход", destroy_user_session_path
+            =link_to 'Выход', destroy_user_session_path
   .container
-    .row.header
+    .row
       .col.m12
-        %h1.valign.grey-text.text-lighten-5 Think Deeper
-        %a#scroll.valign.btn-large.btn-floating.materialize-red.lighten-1.waves-effect.waves-light{:href => "#works"}
-          %i.mdi-navigation-expand-more
+        .header
+          %h1.valign.grey-text.text-lighten-5 Дистанционная олимпиада по информационным технологиям
+          %a#scroll.valign.btn-large.btn-floating.materialize-red.lighten-2.waves-effect.waves-light{:href => '#works'}
+            %i.mdi-navigation-expand-more
 %section#news.container
   .section
     .row
@@ -44,16 +45,16 @@
         .card
           .card-content.black-text
             %span.card-title.black-text Заголовок новости
-            %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse labore doloremque cum illum atque et ipsam accusantium. Fugit ea eaque delectus velit accusantium, ducimus sed, autem est voluptate qui perspiciatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui error doloribus nobis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, repudiandae...
+            %p Идейные соображения высшего порядка, а также новая модель организационной деятельности требуют определения и уточнения системы обучения кадров, соответствует насущным потребностям. Равным образом сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.
           .card-action
-            %a.btn.btn-ghost.waves-effect.waves-red{:href => "#"} читать
+            %a.btn.btn-ghost.waves-effect.waves-red{href: '#'} читать
       .col.s12.m6.l6
         .card
           .card-content.black-text
             %span.card-title.black-text Заголовок новости
-            %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus aut, mollitia perspiciatis rerum repellendus laborum velit! Deserunt eaque dolore eos doloremque? Temporibus maiores delectus dicta! Odio rerum rem perferendis recusandae? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis excepturi accusamus saepe. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, voluptate.
+            %p Идейные соображения высшего порядка, а также новая модель организационной деятельности требуют определения и уточнения системы обучения кадров, соответствует насущным потребностям. Равным образом сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.
           .card-action
-            %a.btn.btn-ghost.waves-effect.waves-red{:href => "#"} читать
+            %a.btn.btn-ghost.waves-effect.waves-red{href: '#'} читать
 %section#works.container
   .section
     .row
@@ -68,10 +69,12 @@
                 %h5.black-text
                   = work.name
                 %p
-                  = work.user.first_name + " " + work.user.last_name
+                  %i.mdi-action-face-unlock.prefix
+                  = work.user.first_name + ' ' + work.user.last_name
                 %p
-                  = work.created_at.to_formatted_s(:long)
+                  %i.mdi-action-today.prefix
+                  =l work.created_at, format: :my
     .row.center
-      %a.btn.waves-effect.waves-light{:href => "#{works_path}"}
+      %a.btn.waves-effect.waves-light{href: "#{works_path}"}
         все работы
         %i.mdi-content-send.right

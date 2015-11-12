@@ -1,7 +1,9 @@
 .container
   .row#category
     .input-field.col.m12
-      = select_tag "categories", options_for_select(Category.all.collect {|a| [a.name, a.id]}), {:prompt => "ВСЕ РАБОТЫ", :onchange => "update_works_div(this.value)"}
+      = select_tag "categories", options_for_select(Category.all.collect {|a| [a.name, a.id]}), {prompt: "ВСЕ РАБОТЫ", onchange: "update_works_div(this.value)"}
   .row#works
+    .loading-wrap
+      #loading
     = render partial: "work", collection: @works
 //= link_to 'New Work', new_work_path
