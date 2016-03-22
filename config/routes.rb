@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :categories
   devise_for :users
 
+  get '/works/:id/rating' => 'works#set_rating', as: :rating
+  post '/works/:id/rating' => 'works#set_rating', as: :ratingpost
   get '/cat/:category_id' => 'works#update_works'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

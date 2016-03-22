@@ -1,6 +1,7 @@
 %header.main-bag
   %nav{role: 'navigation'}
     .nav-wrapper.container
+      %img{ src: "#{image_path('logo.svg')}", width: '80', class: 'left'}
       %a.button-collapse.right{'data-activates' => 'nav-mobile', href: '#'}
         %i.mdi-navigation-menu
       - unless user_signed_in?
@@ -61,19 +62,7 @@
       %h4.col.s12.center Последние работы
     .row
       - @works.each do |work|
-        .col.s12.m6.l3
-          .card.small
-            = image_tag work.file.url(:thumb), class: 'center-block card-image'
-            = link_to (work), class: 'card-over' do
-              .center
-                %h5.black-text
-                  = work.name
-                %p
-                  %i.mdi-action-face-unlock.prefix
-                  = work.user.first_name + ' ' + work.user.last_name
-                %p
-                  %i.mdi-action-today.prefix
-                  =l work.created_at, format: :my
+        =render partial: 'works/work', locals: {work: work}
     .row.center
       %a.btn.waves-effect.waves-light{href: "#{works_path}"}
         все работы

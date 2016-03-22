@@ -10,4 +10,4 @@
           = work.user.first_name + ' ' + work.user.last_name
         %p
           %i.mdi-action-today.prefix
-          = work.created_at.to_formatted_s(:long)
+          =l work.created_at, format: :my

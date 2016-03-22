@@ -1,6 +1,7 @@
 class Work < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
+  has_many :ratings, dependent: :destroy
   has_many :images, :dependent => :destroy
 
   has_attached_file :file, styles: { medium: "600x600", thumb: "300x300#" }, default_url: ""

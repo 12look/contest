@@ -1,9 +1,34 @@
 class WorksController < ApplicationController
-  before_action :set_work, only: [:show, :edit, :update, :destroy]
+  before_action :set_work, only: [:show, :edit, :update, :destroy, :set_rating]
   before_action :authenticate_user!, except: [:index, :show, :update_works]
   before_action :authorized_user, only: [:edit, :update, :destroy]
 
 
+  def set_rating
+    @criterions = Criterion.all
+    if request.get?
+      render "rating/new"
+    else
+      if Rating.where("user_id=?", current_user.id).empty?
+        params[:size].each do |i, val|
+          @rating = Rating.new
+          @rating.user = current_user
+          @rating.work = @work
+          @rating.criterion = Criterion.find(i)
+          @rating.size = val
+          @rating.save
+        end
+        @rating = Rating.where("user_id=?", current_user.id).all
+        @rait = @rating.average(:size)
+        @rating1 = @work.ratings.all
+        @allrait = @rating1.average(:size)
+      else
+        redirect_to works_path, notice: "Вы уже оценили"
+        return
+      end
+      render "rating/result"
+    end
+  end
 
   # GET /works
   # GET /works.json

@@ -1,8 +1,8 @@
 .container
   .row.card
-    .col.s12
+    .col.s12.m12.l12
       .center
-        = image_tag @work.file.url(:medium), class: 'responsive-img'
+        = image_tag @work.file.url(:medium), class: 'responsive-img', width: "350"
   - if @work.images.any?
     .row.card
       - @work.images.each do |image|
@@ -13,6 +13,7 @@
           .modal-content
             =image_tag image.image.url(:original), class: 'responsive-img'
   .row.card-panel.grey.lighten-4
+    = link_to 'Оценить', work_path(@work)+"/rating", class: 'btn-flat waves-effect waves-teal'
     - if @work.user == current_user
       = link_to 'Редактировать', edit_work_path(@work), class: 'btn-flat waves-effect waves-teal'
       = link_to 'Удалить', @link, method: :delete, data: { confirm: 'Серьезно?' }, class: 'btn-flat waves-effect waves-teal'

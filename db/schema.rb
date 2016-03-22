@@ -11,12 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111074450) do
+ActiveRecord::Schema.define(version: 20160310164830) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "criterions", force: :cascade do |t|
+    t.string "name", limit: 255
   end
 
   create_table "images", force: :cascade do |t|
@@ -30,6 +34,17 @@ ActiveRecord::Schema.define(version: 20151111074450) do
   end
 
   add_index "images", ["work_id"], name: "index_images_on_work_id", using: :btree
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "user_id",      limit: 4
+    t.integer "work_id",      limit: 4
+    t.integer "criterion_id", limit: 4
+    t.integer "size",         limit: 4
+  end
+
+  add_index "ratings", ["criterion_id"], name: "index_ratings_on_criterion_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
+  add_index "ratings", ["work_id"], name: "index_ratings_on_work_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -68,6 +83,9 @@ ActiveRecord::Schema.define(version: 20151111074450) do
   add_index "works", ["user_id"], name: "index_works_on_user_id", using: :btree
 
   add_foreign_key "images", "works"
+  add_foreign_key "ratings", "criterions"
+  add_foreign_key "ratings", "users"
+  add_foreign_key "ratings", "works"
   add_foreign_key "works", "categories"
   add_foreign_key "works", "users"
 end

@@ -50,6 +50,42 @@ $(document).ready(function(){
 
   $('.modal-trigger').leanModal();
 
+  //$(window).scroll(function() {
+  //  if ($(document).scrollTop() > 50) {
+  //    $('.fixed').addClass('container');
+  //  } else {
+  //    $('.fixed').removeClass('container');
+  //  }
+  //});
+  $('.dial').each(function () {
+
+    var elm = $(this);
+    var color = elm.attr("data-fgColor");
+    var perc = elm.attr("value");
+
+    elm.knob({
+      'value': 0,
+      'min':0,
+      'max':10,
+      "skin":"tron",
+      "readOnly":true,
+      "thickness":.3,                 'dynamicDraw': true,                "displayInput":false
+    });
+
+    $({value: 0}).animate({ value: perc }, {
+      duration: 1000,
+      easing: 'swing',
+      progress: function () {                  elm.val(this.value).trigger('change')
+      }
+    });
+
+    //circular progress bar color
+    $(this).append(function() {
+      elm.parent().parent().find('.circular-bar-content').css('color',color);
+      elm.parent().parent().find('.circular-bar-content strong').text(perc);
+    });
+
+  });
 }); // end of document ready
 
 //= require turbolinks
