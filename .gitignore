@@ -16,6 +16,7 @@
 !/log/.keep
 /tmp
 
+/vendor/cache
 .idea
 /public/system
 /public/assets
