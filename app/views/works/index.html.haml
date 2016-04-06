@@ -1,9 +1,13 @@
 .container
-  .row#category
-    .input-field.col.m12
-      = select_tag "categories", options_for_select(Category.all.collect {|a| [a.name, a.id]}), {prompt: "ВСЕ РАБОТЫ", onchange: "update_works_div(this.value)"}
+  - unless current_page? action: 'user_works'
+    .row#category
+      .input-field.col.s12.m12.l12
+        = select_tag "categories", options_for_select(Category.all.collect {|a| [a.name, a.id]}), {prompt: "ВСЕ РАБОТЫ", onchange: "update_works_div(this.value)", class: "browser-default"}
   .row#works
-    .loading-wrap
-      #loading
-    = render partial: "work", collection: @works
+    - if !@works.empty?
+      = render partial: "work", collection: @works
+    - else
+      = render partial: "nothing"
+  #paginator
+    = paginate @works, :remote => true
 //= link_to 'New Work', new_work_path

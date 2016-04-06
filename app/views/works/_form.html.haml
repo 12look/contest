@@ -1,5 +1,5 @@
 .row
-  .col.s12.m6.l4.offset-m3.offset-l4
+  .col.s12.m6.l6.offset-m3.offset-l3
     .card-panel
       = form_for(@work) do |f|
         .row
@@ -19,8 +19,11 @@
           .input-field.col.s12
             = f.select :category_id, Category.all.collect {|a| [a.name, a.id]}
             = f.label :category_id, 'Категория'
+          .input-field.col.s12
+            = f.label :archive_url, 'Ссылка на архив'
+            = f.text_field :archive_url
           - if @work.file.exists?
-            = image_tag @work.file.url(:thumb), class: 'col s6', height: '200px'
+            = image_tag @work.file.url(:thumb), class: 'col s12 m12 l4', height: '200px'
           .file-input.col.s12
             = f.label :file, 'Основной скриншот'
             = f.file_field :file

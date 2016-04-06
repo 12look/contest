@@ -1,15 +1,17 @@
-%h2 Change your password
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  = f.hidden_field :reset_password_token
-  .field
-    = f.label :password, "New password"
-    %br/
-    = f.password_field :password, autofocus: true, autocomplete: "off"
-  .field
-    = f.label :password_confirmation, "Confirm new password"
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .actions
-    = f.submit "Change my password"
-= render "devise/shared/links"
+%h4.center Изменение пароля
+.row
+  .col.s12.m6.l4.offset-m3.offset-l4
+    .card-panel
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        .row
+          = devise_error_messages!
+          = f.hidden_field :reset_password_token
+          .input-field.col.s12
+            = f.label :password, "Новый пароль"
+            = f.password_field :password, autofocus: true, autocomplete: "off"
+          .input-field.col.s12
+            = f.label :password_confirmation, "Подтверждение нового пароля"
+            = f.password_field :password_confirmation, autocomplete: "off"
+          .input-field.col.s12.center
+            = f.submit "Изменить", class: "btn"
+      = render "devise/shared/links"

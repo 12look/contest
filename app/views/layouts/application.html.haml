@@ -1,22 +1,103 @@
 !!!
 %html
   %head
-    %title= "Олимпиада по компьютерной графике"
-    %meta{:charset => "utf-8"}/
+    %title= "IT олимпиада"
+    %meta{charset: "utf-8"}/
     / Let browser know website is optimized for mobile
-    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
-    = stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => true
+    %meta{content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", name: "viewport"}/
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": true
+    = stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons"
     = csrf_meta_tags
-  %body{:class => "body-#{controller_name}"}
-    = yield
-    - if current_page?(root_url)
-      %footer.page-footer.teal
-        .footer-copyright
-          .container.center
-            From VPI with
-            %i.mdi-action-favorite
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+  %body{class: "body-#{controller_name}"}
+    %header.main-bag
+      -if user_signed_in?
+        %ul#dropdown1.dropdown-content
+          - if can? :create, Work
+            %li
+              =link_to 'Добавить работу', new_work_path
+          - unless current_user.has_role? :jury
+            %li
+              =link_to 'Мои работы', user_works_path
+          %li
+            =link_to 'Аккаунт', edit_user_registration_path
+          %li
+            =link_to 'Выход', destroy_user_session_path
+      %nav{role: 'navigation'}
+        .nav-wrapper.container
+          %a{href: '/', class: 'logo'}
+            = inline_svg "sports.svg", size: '100%'
+          %a.button-collapse.right{'data-activates': 'nav-mobile', href: '#'}
+            %i.mdi-navigation-menu
+          - unless user_signed_in?
+            %ul.right.hide-on-med-and-down
+              %li
+                =link_to 'Все работы', works_path, class: 'nav-el'
+              %li
+                =link_to 'Вход', new_user_session_path, class: 'nav-el'
+              %li
+                =link_to 'Регистрация', new_user_registration_path, class: 'nav-el'
+              %li
+                =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
+            %ul#nav-mobile.side-nav
+              %li
+                =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
+              %li
+                =link_to 'Все работы', works_path, class: 'nav-el'
+              %li
+                =link_to 'Вход', new_user_session_path
+              %li
+                =link_to 'Регистрация', new_user_registration_path
+          - else
+            %ul.right.hide-on-med-and-down
+              %li
+                =link_to 'Все работы', works_path, class: 'nav-el'
+              %li
+                %a.nav-el.dropdown_menu_button{href: "#!", "data-activates": "dropdown1" }
+                  = current_user.first_name
+                  %i.mdi-navigation-arrow-drop-down.right
+              %li
+                =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
+            %ul#nav-mobile.side-nav
+              %li
+                =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
+              %li
+                =link_to 'Все работы', works_path, class: 'nav-el'
+              %li
+                %a.dropdown-button{href: "#!", "data-activates": "dropdown2" }
+                  = current_user.first_name
+                  %i.mdi-navigation-arrow-drop-down.right
+              %ul#dropdown2.dropdown-content
+                - if can? :create, Work
+                  %li
+                    =link_to 'Добавить работу', new_work_path, class: 'nav-el'
+                - unless current_user.has_role? :jury
+                  %li
+                    =link_to 'Мои работы', user_works_path
+                %li
+                  =link_to 'Аккаунт', edit_user_registration_path
+                %li
+                  =link_to 'Выход', destroy_user_session_path
+      .container
+        .row
+          .col.m12
+            .header
+              %h1.valign.grey-text.text-lighten-5 Дистанционная олимпиада по информационным технологиям
+              -#%a#scroll.valign.btn-large.btn-floating.materialize-red.lighten-2.waves-effect.waves-light{:href => '#works'}
+                %i.mdi-navigation-expand-more
+    %main
+      = yield
+    -#- if current_page?(root_url)
+    %footer.page-footer.teal.lighten-1
+      .footer-copyright
+        .container.center
+          From VPI with
+          %i.mdi-action-favorite
+    = javascript_include_tag "application", "data-turbolinks-track": true
     - unless flash.empty?
-      -flash.each do |f| 
-        :javascript
-          Materialize.toast('#{f[1]}', 4000)
+      -flash.each do |key, f|
+        - if key == "alert"
+          :javascript
+            Materialize.toast('#{f}', 4000, 'red')
+        - else
+          :javascript
+            Materialize.toast('#{f}', 4000)

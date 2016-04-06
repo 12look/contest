@@ -42,13 +42,19 @@ group :development, :test do
   gem 'spring'
 end
 
-group :development, :test do
-  gem 'mysql2'
-end
 
+gem 'mysql2', '~> 0.3.20'
+
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'devise', '~> 3.4.1'
-gem 'materialize-sass', '~> 0.96.2'
+gem 'materialize-sass'
 gem 'haml', '~> 4.0.6'
 gem 'html2haml', '~> 2.0.0'
 gem 'paperclip', '~> 4.2.1'
 gem 'jquery-turbolinks'
+gem 'cancancan'
+gem 'rolify'
+gem 'activeadmin', github: 'activeadmin'
+gem 'inline_svg'
+gem 'kaminari'
+gem 'lightbox2-rails'

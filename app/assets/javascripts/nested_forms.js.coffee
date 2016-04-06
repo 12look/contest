@@ -4,7 +4,10 @@ jQuery ->
     $(this).closest('.image-field').hide()
     event.preventDefault()
   $(document).on 'click', 'form .add_fields', (event) ->
-    time = new Date().getTime()
-    regexp = new RegExp($(this).data('id'), 'g')
-    $(this).before($(this).data('fields').replace(regexp, time))
-    event.preventDefault()
+    if ($('.remove_fields').size() != 10)
+      time = new Date().getTime()
+      regexp = new RegExp($(this).data('id'), 'g')
+      $(this).before($(this).data('fields').replace(regexp, time))
+      event.preventDefault()
+    else
+      alert('Можно добавить только 10')

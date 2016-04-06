@@ -1,0 +1,2 @@
+$('#works').html("#{escape_javascript(render partial: "work", collection: @works)}");
+$('#paginator').html("#{escape_javascript(paginate(@works, :remote => true)) }");

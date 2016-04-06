@@ -1,0 +1,9 @@
+.row
+  .col.s12.m6.l6.offset-m3.offset-l3
+    .card-panel
+      = form_tag controller: "works", action: "set_rating"
+      - @criterions.each do |criterion|
+        %p= criterion.name
+        = select_tag "size[#{criterion.id}]", options_for_select((1..10).step(1))
+      .center
+        = submit_tag 'Оценить', class: 'btn'

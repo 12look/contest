@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# [:admin, :jury, :participant].each do |role|
+#   Role.find_or_create_by( name: role )
+# end
+# @user = User.find_by_email("test@example.com")
+# @user.add_role :juryAdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+#AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')

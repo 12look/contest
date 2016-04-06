@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :works
-  resources :categories
+  #resources :categories
   devise_for :users
+
+  devise_scope :user do
+    get 'users/myworks' => 'works#user_works', as: :user_works
+  end
 
   get '/works/:id/rating' => 'works#set_rating', as: :rating
   post '/works/:id/rating' => 'works#set_rating', as: :ratingpost
-  get '/cat/:category_id' => 'works#update_works'
+  get '/cat/:category_id' =>  'works#update_works', as: :fetch_items
+  get '/categories/:category_id' => 'categories#show', as: :categories
+  get '/top/(:category_id)' => 'works#top', as: :top
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

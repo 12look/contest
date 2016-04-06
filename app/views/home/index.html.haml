@@ -1,61 +1,22 @@
-%header.main-bag
-  %nav{role: 'navigation'}
-    .nav-wrapper.container
-      %img{ src: "#{image_path('logo.svg')}", width: '80', class: 'left'}
-      %a.button-collapse.right{'data-activates' => 'nav-mobile', href: '#'}
-        %i.mdi-navigation-menu
-      - unless user_signed_in?
-        %ul.right.hide-on-med-and-down
-          %li
-            =link_to 'Вход', new_user_session_path, class: 'nav-el'
-          %li
-            =link_to 'Регистрация', new_user_registration_path, class: 'nav-el'
-        %ul#nav-mobile.side-nav
-          %li
-            =link_to 'Вход', new_user_session_path
-          %li
-            =link_to 'Регистрация', new_user_registration_path
-      - else
-        %ul.right.hide-on-med-and-down
-          %li
-            =link_to 'Добавить работу', new_work_path, class: 'nav-el'
-          %li
-            =link_to 'Аккаунт', edit_user_registration_path, class: 'nav-el'
-          %li
-            =link_to 'Выход', destroy_user_session_path, class: 'nav-el'
-        %ul#nav-mobile.side-nav
-          %li
-            =link_to 'Добавить работу', new_work_path, class: 'nav-el'
-          %li
-            =link_to 'Аккаунт', edit_user_registration_path
-          %li
-            =link_to 'Выход', destroy_user_session_path
-  .container
-    .row
-      .col.m12
-        .header
-          %h1.valign.grey-text.text-lighten-5 Дистанционная олимпиада по информационным технологиям
-          %a#scroll.valign.btn-large.btn-floating.materialize-red.lighten-2.waves-effect.waves-light{:href => '#works'}
-            %i.mdi-navigation-expand-more
-%section#news.container
-  .section
-    .row
-      %h4.col.s12.center Последние новости
-    .row
-      .col.s12.m6.l6
-        .card
-          .card-content.black-text
-            %span.card-title.black-text Заголовок новости
-            %p Идейные соображения высшего порядка, а также новая модель организационной деятельности требуют определения и уточнения системы обучения кадров, соответствует насущным потребностям. Равным образом сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.
-          .card-action
-            %a.btn.btn-ghost.waves-effect.waves-red{href: '#'} читать
-      .col.s12.m6.l6
-        .card
-          .card-content.black-text
-            %span.card-title.black-text Заголовок новости
-            %p Идейные соображения высшего порядка, а также новая модель организационной деятельности требуют определения и уточнения системы обучения кадров, соответствует насущным потребностям. Равным образом сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.
-          .card-action
-            %a.btn.btn-ghost.waves-effect.waves-red{href: '#'} читать
+-#%section#news.container
+-#  .section
+-#    .row
+-#      %h4.col.s12.center Последние новости
+-#    .row
+-#      .col.s12.m6.l6
+-#        .card
+-#          .card-content.black-text
+-#            %span.card-title.black-text Заголовок новости
+-#            %p Идейные соображения высшего порядка, а также новая модель организационной деятельности требуют определения и уточнения системы обучения кадров, соответствует насущным потребностям. Равным образом сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.
+-#          .card-action
+-#            %a.btn.btn-ghost.waves-effect.waves-red{href: '#'} читать
+-#      .col.s12.m6.l6
+-#        .card
+-#          .card-content.black-text
+-#            %span.card-title.black-text Заголовок новости
+-#            %p Идейные соображения высшего порядка, а также новая модель организационной деятельности требуют определения и уточнения системы обучения кадров, соответствует насущным потребностям. Равным образом сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.
+-#          .card-action
+-#            %a.btn.btn-ghost.waves-effect.waves-red{href: '#'} читать
 %section#works.container
   .section
     .row

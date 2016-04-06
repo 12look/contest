@@ -1,6 +1,6 @@
-%h2.center Регистрация
+%h3.center Регистрация
 .row
-  .col.s12.m6.l4.offset-m3.offset-l4
+  .col.s12.m6.l6.offset-m3.offset-l3
     .card-panel
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         .row
@@ -11,6 +11,12 @@
           .input-field.col.s12
             = f.label :last_name
             = f.text_field :last_name, class: 'validate'
+          .input-field.col.s12
+            = f.label :institution
+            = f.text_field :institution, class: 'validate'
+          .input-field.col.s12
+            = f.label :manager
+            = f.text_field :manager, class: 'validate'
           .input-field.col.s12
             = f.label :email
             = f.email_field :email, class: 'validate'

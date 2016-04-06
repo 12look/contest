@@ -1,0 +1,6 @@
+= builder.fields_for(:images, image_edit) do |f|
+  .image-field
+    %p= image_tag image_edit.image.url(:thumb)
+    %p
+      = f.hidden_field :_destroy
+      = link_to 'Удалить', '#', class: 'remove_fields'
