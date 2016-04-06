@@ -45,7 +45,7 @@ end
 
 gem 'mysql2', '~> 0.3.20'
 
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails'
 gem 'devise', '~> 3.4.1'
 gem 'materialize-sass'
 gem 'haml', '~> 4.0.6'
@@ -58,3 +58,4 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'inline_svg'
 gem 'kaminari'
 gem 'lightbox2-rails'
+gem 'therubyracer'
