@@ -39,14 +39,5 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = false
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.smtp_settings = {
-      address: "smtp.yandex.ru",
-      port: 465,
-      domain: "yandex.ru",
-      authentication: "plain",
-      enable_starttls_auto: true,
-      user_name: "net-pofig@yandex.ru",
-      password: "ab4ifqaup8nez3t58fz9"
-  }
   config.action_mailer.default charset: "utf-8"
 end
