@@ -7,18 +7,18 @@ class WorksController < ApplicationController
 
   def user_works
     @works = current_user.works.order('created_at DESC').page(params[:page])
-    render "works/myworks"
+    render 'works/myworks'
   end
 
   def set_rating
     authorize! :set_rating, @work
     unless Rating.was_rait(@work, current_user).empty?
-      redirect_to work_path(@work), alert: "Вы уже оценили"
+      redirect_to work_path(@work), alert: 'Вы уже оценили'
       return
     end
     @criterions = Criterion.all
     if request.get?
-      render "works/show"
+      render 'works/show'
     else
       params[:size].each do |val|
         unless val[1].to_i.between?(1,10)
@@ -36,19 +36,21 @@ class WorksController < ApplicationController
       end
       @rait = Rating.was_rait(@work, current_user).all.average(:size)
       @allrait = @work.ratings.all.average(:size)
-      render "rating/result"
+      render 'rating/result'
     end
   end
 
   # GET /top
   def top
     @works = Work.joins(:ratings).uniq
-                 .select("works.*, avg(ratings.size) as rait")
-                 .group("works.id")
-                 .order("rait DESC")
-    @works = @works.where("category_id=?", params[:category_id]) if params.has_key? :category_id
+                 .select('works.*, avg(ratings.size) as rait')
+                 .group('works.id')
+                 .having('count(distinct ratings.user_id) = ?', User.count_jury)
+                 .order('rait DESC')
+                 .limit(10)
+    @works = @works.where('category_id=?', params[:category_id]) if params.has_key? :category_id
 
-    render "works/top"
+    render 'works/top'
   end
 
   # GET /works
@@ -62,11 +64,11 @@ class WorksController < ApplicationController
   end
 
   def update_works
-    @works = Work.where("category_id=?", params[:category_id]).order('created_at DESC').all
+    @works = Work.where('category_id=?', params[:category_id]).order('created_at DESC').all
     if !@works.empty?
-      render partial: "partials/work", collection: @works
+      render partial: 'partials/work', collection: @works
     else
-      render partial: "partials/nothing"
+      render partial: 'partials/nothing'
     end
   end
 
@@ -134,7 +136,7 @@ class WorksController < ApplicationController
 
     def authorized_user
       @work = current_user.works.find_by(id: params[:id])
-      redirect_to works_path, notice: "Вы не авторизованы" if @work.nil?
+      redirect_to works_path, notice: 'Вы не авторизованы' if @work.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
