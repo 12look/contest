@@ -23,7 +23,7 @@
       %h4.col.s12.center Последние работы
     .row
       - @works.each do |work|
-        =render partial: 'works/work', locals: {work: work}
+        =render partial: 'partials/work', locals: {work: work}
     .row.center
       %a.btn.waves-effect.waves-light{href: "#{works_path}"}
         все работы

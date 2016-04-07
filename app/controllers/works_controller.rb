@@ -64,9 +64,9 @@ class WorksController < ApplicationController
   def update_works
     @works = Work.where("category_id=?", params[:category_id]).order('created_at DESC').all
     if !@works.empty?
-      render partial: "work", collection: @works
+      render partial: "partials/work", collection: @works
     else
-      render partial: "nothing"
+      render partial: "partials/nothing"
     end
   end
 

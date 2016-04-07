@@ -71,6 +71,11 @@ nav .nav-wrapper i {
 }
 
 #nav-mobile {
+
+  .dropdown-content li > a {
+    line-height: 35px;
+  }
+
   i {
     line-height: 64px;
   }

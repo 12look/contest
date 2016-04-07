@@ -5,9 +5,9 @@
         = select_tag "categories", options_for_select(Category.all.collect {|a| [a.name, a.id]}), {prompt: "ВСЕ РАБОТЫ", onchange: "update_works_div(this.value)", class: "browser-default"}
   .row#works
     - if !@works.empty?
-      = render partial: "work", collection: @works
+      = render partial: "partials/work", collection: @works
     - else
-      = render partial: "nothing"
+      = render partial: "partials/nothing"
   #paginator
     = paginate @works, :remote => true
 //= link_to 'New Work', new_work_path
