@@ -16,7 +16,7 @@
     .col.s12.m12.l6
       .card-panel.grey.lighten-5
         .row
-          .col.s4.offset-s4.center
+          .col.s12.m6.offset-m3.center
             - if can? :set_rating, @work and Rating.was_rait(@work, current_user).empty?
               .card
                 = link_to 'Оценить', work_path(@work)+"/rating#rating", class: 'btn-flat waves-effect waves-teal'
