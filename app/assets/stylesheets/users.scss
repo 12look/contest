@@ -1,0 +1,17 @@
+.user {
+  padding-left: 10px;
+
+  .row {
+    margin-bottom: 0;
+  }
+
+  p.info {
+    margin: 5px 0 0 0;
+  }
+
+  .info-line {
+    color: color("grey", "darken-1");
+    font-weight: 400;
+    font-size: 1rem;
+  }
+}

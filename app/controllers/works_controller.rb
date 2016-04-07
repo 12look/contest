@@ -6,7 +6,7 @@ class WorksController < ApplicationController
   authorize_resource only: [:create, :edit, :update, :destroy]
 
   def user_works
-    @works = current_user.works.page(params[:page])
+    @works = current_user.works.order('created_at DESC').page(params[:page])
     render "works/myworks"
   end
 

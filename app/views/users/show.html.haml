@@ -1,0 +1,23 @@
+.container.user
+  .row
+    .col.s12.m6.card-panel.grey.lighten-5
+      %h4.name= @user.first_name + " " + @user.last_name
+      %p.info
+        %span.info-line Дата регистрации:
+        = l @user.created_at, format: :my
+      %p.info
+        %span.info-line Учебное заведение:
+        = @user.institution
+      - unless @user.manager.empty?
+        %p.info
+          %span.info-line Руководитель:
+          = @user.manager
+      %p.info
+        %span.info-line Количество работ:
+        = @user.works.count
+  .row
+    .col.s12.card-panel
+      = render partial: "partials/work", collection: @user_works
+    .col.s12.card-panel
+      #paginator
+        = paginate @user_works

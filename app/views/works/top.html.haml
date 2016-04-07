@@ -13,7 +13,7 @@
               .col.s12
                 %h5
                   %b= i.to_s + ". " + work.name
-                %span= " (" + work.user.first_name + " " + work.user.last_name + ")"
+                %span= link_to work.user.first_name + " " + work.user.last_name, user_path(work.user)
             .col.s6.m3.l3
               .card.small
                 .card-image.center-block

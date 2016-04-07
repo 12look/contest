@@ -13,7 +13,7 @@ ActiveAdmin.register User do
 #   permitted
 # end
 
-  permit_params :first_name, :last_name, :email,
+  permit_params :first_name, :last_name, :email, :institution, :manager,
                 role_ids: []
 
   after_create { |user| user.send_reset_password_instructions }
@@ -40,6 +40,8 @@ form do |f|
   f.inputs "Информация об участнике" do
     f.input :first_name
     f.input :last_name
+    f.input :institution
+    f.input :manager
     f.input :email
     f.input :roles
   end

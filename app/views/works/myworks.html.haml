@@ -7,3 +7,5 @@
         = render partial: "partials/work", collection: @works
       - else
         = render partial: "partials/nothing"
+    #paginator
+      = paginate @works

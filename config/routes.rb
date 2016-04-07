@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/show'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :works
@@ -8,6 +10,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/myworks' => 'works#user_works', as: :user_works
   end
+
+  resources :users, only: :show
 
   get '/works/:id/rating' => 'works#set_rating', as: :rating
   post '/works/:id/rating' => 'works#set_rating', as: :ratingpost
