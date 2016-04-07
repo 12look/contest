@@ -7,7 +7,7 @@ class WorksController < ApplicationController
 
   def user_works
     @works = current_user.works.page(params[:page])
-    render "works/index"
+    render "works/myworks"
   end
 
   def set_rating

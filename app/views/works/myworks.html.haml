@@ -1,0 +1,9 @@
+%section.container
+  .section
+    .row
+      %h4.col.s12.center Мои работы
+    .row
+      - if !@works.empty?
+        = render partial: "partials/work", collection: @works
+      - else
+        = render partial: "partials/nothing"
