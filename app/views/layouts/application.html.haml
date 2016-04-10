@@ -31,7 +31,7 @@
           - unless user_signed_in?
             %ul.right.hide-on-med-and-down
               %li
-                =link_to 'Все работы', works_path, class: 'nav-el'
+                =link_to 'работы', works_path, class: 'nav-el'
               %li
                 =link_to 'Вход', new_user_session_path, class: 'nav-el'
               %li
@@ -40,17 +40,17 @@
                 =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
             %ul#nav-mobile.side-nav
               %li
+                =link_to 'Вход', new_user_session_path, class: 'nav-el'
+              %li
+                =link_to 'Регистрация', new_user_registration_path, class: 'nav-el'
+              %li
+                =link_to 'работы', works_path, class: 'btn teal waves-effect'
+              %li
                 =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
-              %li
-                =link_to 'Все работы', works_path, class: 'nav-el'
-              %li
-                =link_to 'Вход', new_user_session_path
-              %li
-                =link_to 'Регистрация', new_user_registration_path
           - else
             %ul.right.hide-on-med-and-down
               %li
-                =link_to 'Все работы', works_path, class: 'nav-el'
+                =link_to 'работы', works_path, class: 'nav-el'
               %li
                 %a.nav-el.dropdown_menu_button{href: "#!", "data-activates": "dropdown1" }
                   = current_user.first_name
@@ -59,17 +59,17 @@
                 =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
             %ul#nav-mobile.side-nav
               %li
-                =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
-              %li
-                =link_to 'Все работы', works_path, class: 'nav-el'
-              %li
-                %a.dropdown-button{href: "#!", "data-activates": "dropdown2" }
+                %a.dropdown-button{href: "#!", "data-activates": "dropdown2", class: "nav-el"}
                   = current_user.first_name
                   %i.mdi-navigation-arrow-drop-down.right
+              %li
+                =link_to 'работы', works_path, class: 'btn teal waves-effect'
+              %li
+                =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
               %ul#dropdown2.dropdown-content
                 - if can? :create, Work
                   %li
-                    =link_to 'Добавить работу', new_work_path, class: 'nav-el'
+                    =link_to 'Добавить работу', new_work_path
                 - unless current_user.has_role? :jury
                   %li
                     =link_to 'Мои работы', user_works_path

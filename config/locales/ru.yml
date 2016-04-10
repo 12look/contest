@@ -333,6 +333,7 @@ ru:
           roles: "Роль"
           institution: "Учебное заведение"
           manager: "Руководитель"
+          remember_me: "Запомнить меня"
         work:
           name: "Название"
           description: "Описание"
