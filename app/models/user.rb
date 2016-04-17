@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :works, dependent: :destroy
   has_many :ratings, dependent: :destroy
 
+  belongs_to :meta, polymorphic: true, dependent: :destroy
+
   validates :first_name, :last_name, :institution, presence: true
 
   validates :first_name, length: { in: 2..30 }

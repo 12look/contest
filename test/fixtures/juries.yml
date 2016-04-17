@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  middle_name: MyString
+  rank: MyString
+  degree: MyString
+
+two:
+  middle_name: MyString
+  rank: MyString
+  degree: MyString

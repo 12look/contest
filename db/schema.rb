@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406163021) do
+ActiveRecord::Schema.define(version: 20160417171637) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -68,6 +68,17 @@ ActiveRecord::Schema.define(version: 20160406163021) do
 
   add_index "images", ["work_id"], name: "index_images_on_work_id", using: :btree
 
+  create_table "juries", force: :cascade do |t|
+    t.string "middle_name", limit: 255
+    t.string "rank",        limit: 255
+    t.string "degree",      limit: 255
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.string "classroom", limit: 255
+    t.string "manager",   limit: 255
+  end
+
   create_table "ratings", force: :cascade do |t|
     t.integer "user_id",      limit: 4
     t.integer "work_id",      limit: 4
@@ -104,7 +115,8 @@ ActiveRecord::Schema.define(version: 20160406163021) do
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
     t.string   "institution",            limit: 255
-    t.string   "manager",                limit: 255
+    t.integer  "meta_id",                limit: 4
+    t.string   "meta_type",              limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

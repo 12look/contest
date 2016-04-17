@@ -152,10 +152,11 @@ nav {
   line-height: 70px;
 }
 
-.dropdown-content a {
+.dropdown-content li > a {
   text-transform: uppercase;
   font-size: 1rem !important;
   text-align: center;
+  padding: 15px 5px;
 }
 .nav-el {
   text-transform: uppercase;

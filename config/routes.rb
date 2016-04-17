@@ -5,10 +5,14 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :works
   #resources :categories
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => 'user_registrations' }
 
   devise_scope :user do
     get 'users/myworks' => 'works#user_works', as: :user_works
+    get 'users/register' => 'users#register', as: :user_register
+
+    get 'participant/sign_up' => 'user_registrations#new', :user => { :meta_type => 'participant' }, as: :new_participant
+    get 'jury/sign_up' => 'user_registrations#new', :user => { :meta_type => 'jury' }, as: :new_jury
   end
 
   resources :users, only: :show
