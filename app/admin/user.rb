@@ -1,17 +1,5 @@
 ActiveAdmin.register User do
   menu label: 'Пользователи'
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
 
   scope :all, default: true
   scope :participants
@@ -32,7 +20,7 @@ index do
   column :first_name
   column :last_name
   column :roles do |role|
-    role.roles.map { |r| r.name }.join(" ")
+    role.roles.map { |r| r.name }.join(' ')
   end
   column :sign_in_count
   column :created_at
