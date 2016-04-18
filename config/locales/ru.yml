@@ -331,6 +331,22 @@ ru:
       next: "След"
       previous: "Пред"
   activerecord:
+      models:
+        user:
+          one: "Пользователь"
+          other: "Пользователи"
+        work:
+          one: "Работа"
+          other: "Работы"
+        category:
+          one: "Категория"
+          other: "Категории"
+        criterion:
+          one: "Критерий"
+          other: "Критерии"
+        admin_user:
+          one: "Администратор"
+          other: "Администраторы"
       attributes:
         user:
           password: "Пароль"
@@ -341,6 +357,8 @@ ru:
           roles: "Роль"
           institution: "Учебное заведение"
           remember_me: "Запомнить меня"
+          sign_in_count: "Количество входов"
+          created_at: "Дата регистрации"
         jury:
           middle_name: "Отчество"
           rank: "Звание"
@@ -353,3 +371,12 @@ ru:
           description: "Описание"
           category: "Категория"
           archive_url: "Ссылка на архив"
+        criterion:
+          name: "Название"
+        category:
+          name: "Название"
+  active_admin:
+      scopes:
+        all: "Все"
+        not_active_jury: "Неактивированные жюри"
+        participants: "Участники"

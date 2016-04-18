@@ -52,6 +52,11 @@ main {
   flex: 1 0 auto;
 }
 
+h3, h4 {
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+
 .container {
   min-width: 320px;
 }

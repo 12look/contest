@@ -16,6 +16,18 @@ class User < ActiveRecord::Base
   validates :last_name, length: { in: 2..50 }
   validates :institution, length: { in: 3..100 }
 
+  scope :not_active_jury, -> { joins(:roles).where(meta_type: 'Jury', roles: {name: :participant}) }
+  scope :participants, -> { where(meta_type: 'Participant') }
+
+  accepts_nested_attributes_for :meta
+
+  META_TYPES = %w(Participant Jury)
+
+  def build_meta(params)
+    raise "Unknown itemizable_type: #{meta_type}" unless META_TYPES.include?(meta_type)
+    self.meta = meta_type.constantize.new(params)
+  end
+
   after_create :assign_default_role
 
   def assign_default_role
