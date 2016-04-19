@@ -1,4 +1,6 @@
 #= require active_admin/base
+#= require admin/jquery.flot.min
+#= require admin/jquery.flot.pie
 ready = ->
   $('#' + $(".polyselect").val() + '_poly').show()
   $(".polyselect").on "change", ->

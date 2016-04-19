@@ -1,0 +1,14 @@
+%div{style: 'float: left'}
+  %h2 Процент завершения
+  %div{id: 'premium_users_pie', style: 'height: 400px; width: 400px'}
+:javascript
+  $(document).ready(function(){
+    var users = #{works}
+    console.log(users)
+    $.plot('#premium_users_pie', users, {
+      series: { pie: { show: true } },
+      legend: {
+        show: false
+      }
+    });
+  });

@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   validates :last_name, length: { in: 2..50 }
   validates :institution, length: { in: 3..100 }
 
-  scope :not_active_jury, -> { joins(:roles).where(meta_type: 'Jury', roles: {name: :participant}) }
+  scope :not_active_jury, -> { joins(:roles).where(roles: {name: :participant}).where(meta_type: 'Jury') }
   scope :participants, -> { where(meta_type: 'Participant') }
   scope :juries, -> { joins(:roles).where(roles: {name: :jury}) }
 
