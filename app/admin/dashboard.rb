@@ -7,15 +7,17 @@ ActiveAdmin.register_page "Dashboard" do
     works = Work.joins(:ratings).uniq
                 .group('works.id')
                 .having('count(distinct ratings.user_id) = ?', User.count_jury).count
-    jury = Work.count
+    works_not = Work.count - works.size
     json_data = []
     json_data << {
-        label: 'Проголосованные работы',
-        data: works.size
+        label: 'Проголосованные',
+        data: works.size,
+        color: '#6DA95C'
     }
     json_data << {
-        label: 'Непроголосованные работы',
-        data: jury
+        label: 'Непроголосованные',
+        data: works_not,
+        color: '#FF8E7B'
     }
     # works1.each do |key, value|
     #   json_data << {

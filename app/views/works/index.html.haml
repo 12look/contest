@@ -2,7 +2,7 @@
   - unless current_page? controller: 'works', action: 'user_works'
     .row#category
       .input-field.col.s12.m12.l12
-        = select_tag "categories", options_for_select(Category.all.collect {|a| [a.name, a.id]}), {prompt: "ВСЕ РАБОТЫ", onchange: "update_works_div(this.value)", class: "browser-default"}
+        = select_tag "categories", options_for_select(Category.all.collect {|a| [a.name + " ( #{ a.works.count } )", a.id]}), {prompt: "ВСЕ РАБОТЫ ( #{Work.count} )", onchange: "update_works_div(this.value)", class: "browser-default"}
   .row#works
     - if !@works.empty?
       = render partial: "partials/work", collection: @works

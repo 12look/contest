@@ -8,10 +8,13 @@
       %p.info
         %span.info-line Учебное заведение:
         = @user.institution
-      - unless @user.manager.empty?
+      - unless @user.meta.classroom.empty?
         %p.info
-          %span.info-line Руководитель:
-          = @user.manager
+          %span.info-line Класс:
+          = @user.meta.classroom
+      %p.info
+        %span.info-line Руководитель:
+        = @user.meta.manager
       %p.info
         %span.info-line Количество работ:
         = @user.works.count

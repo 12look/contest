@@ -9,13 +9,20 @@
     = stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons"
     = csrf_meta_tags
   %body{class: "body-#{controller_name}"}
+
+    - if User.not_active_jury.include?(current_user)
+      .container
+        .row
+          .col.s12.toast.orange
+            .center-block= 'Дождитесь пока администратор подтвердит, что вы жюри'
+
     %header.main-bag
       -if user_signed_in?
         %ul#dropdown1.dropdown-content
           - if can? :create, Work and !User.not_active_jury.include?(current_user)
             %li
               =link_to 'Добавить работу', new_work_path
-          - unless current_user.has_role? :jury and !User.not_active_jury.include?(current_user)
+          - unless current_user.has_role? :jury or User.not_active_jury.include?(current_user)
             %li
               =link_to 'Мои работы', user_works_path
           %li
@@ -93,6 +100,7 @@
           From VPI with
           %i.mdi-action-favorite
     = javascript_include_tag "application", "data-turbolinks-track": true
+
     - unless flash.empty?
       -flash.each do |key, f|
         - if key == "alert"

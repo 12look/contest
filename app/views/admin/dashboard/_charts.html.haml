@@ -1,12 +1,22 @@
 %div{style: 'float: left'}
   %h2 Процент завершения
-  %div{id: 'premium_users_pie', style: 'height: 400px; width: 400px'}
+  %div{id: 'premium_users_pie', style: 'height: 500px; width: 500px'}
 :javascript
+  function labelFormatter(label, series) {
+    return "<div style='font-size: 12px; font-weight: bold;'>" + label + "<div style='text-align: center;'>" + series.percent.toFixed(2) + "%</div></div>";
+  }
   $(document).ready(function(){
-    var users = #{works}
-    console.log(users)
-    $.plot('#premium_users_pie', users, {
-      series: { pie: { show: true } },
+    var wrks = #{works}
+    console.log(wrks)
+    $.plot('#premium_users_pie', wrks, {
+      series: {
+                pie: { show: true,
+                label: {
+                  show: true,
+                  formatter: labelFormatter,
+                  }
+              }
+      },
       legend: {
         show: false
       }
