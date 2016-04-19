@@ -276,6 +276,10 @@ ul.right li:hover {
     bottom: 10px;
     left: 10px;
 
+    @media #{$small-and-down} {
+      bottom: 5px;
+    }
+
     p {
       margin: 5px auto;
       color: color("grey", "darken-1");
@@ -287,6 +291,7 @@ ul.right li:hover {
       }
       @media #{$small-and-down} {
         font-size: 0.5rem;
+        margin: 2px auto;
       }
       @media only screen and (min-width : 993px) and (max-width : 1440px) {
         font-size: 0.7rem;

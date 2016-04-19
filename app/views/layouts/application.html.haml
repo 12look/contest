@@ -14,7 +14,7 @@
       .container
         .row
           .col.s12.toast.orange
-            .center-block= 'Дождитесь пока администратор подтвердит, что вы жюри'
+            .center-block.center= 'Дождитесь пока администратор подтвердит, что вы жюри'
 
     %header.main-bag
       -if user_signed_in?
@@ -22,7 +22,6 @@
           - if can? :create, Work and !User.not_active_jury.include?(current_user)
             %li
               =link_to 'Добавить работу', new_work_path
-          - unless current_user.has_role? :jury or User.not_active_jury.include?(current_user)
             %li
               =link_to 'Мои работы', user_works_path
           %li
@@ -77,7 +76,6 @@
                 - if can? :create, Work and !User.not_active_jury.include?(current_user)
                   %li
                     =link_to 'Добавить работу', new_work_path
-                - unless current_user.has_role? :jury and !User.not_active_jury.include?(current_user)
                   %li
                     =link_to 'Мои работы', user_works_path
                 %li

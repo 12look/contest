@@ -22,7 +22,7 @@
                   .card-image.center-block
                     = link_to (image_tag work.file.url(:thumb)), work_path(work)
               .col.s6.m3.l3.right
-                .circular-bar.tooltipped{'data-position':'top', 'data-delay': '50', 'data-tooltip': "Проголосовало #{work.count_jury} из #{User.count_jury}"}
+                .circular-bar
                   %input.dial{"data-fgcolor": "#34495e", "data-height": "100", "data-linecap": "round", "data-width": "100", "data-step": "0.1", type: "text", value: "#{decimals(work.rait) > 3 ? work.rait.round(3) : work.rait}"}
                   .circular-bar-content
                     %strong
