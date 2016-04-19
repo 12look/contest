@@ -12,10 +12,10 @@
     %header.main-bag
       -if user_signed_in?
         %ul#dropdown1.dropdown-content
-          - if can? :create, Work
+          - if can? :create, Work && !User.not_active_jury.include?(current_user)
             %li
               =link_to 'Добавить работу', new_work_path
-          - unless current_user.has_role? :jury
+          - unless current_user.has_role? :jury && !User.not_active_jury.include?(current_user)
             %li
               =link_to 'Мои работы', user_works_path
           %li
@@ -67,10 +67,10 @@
               %li
                 =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
               %ul#dropdown2.dropdown-content
-                - if can? :create, Work
+                - if can? :create, Work && !User.not_active_jury.include?(current_user)
                   %li
                     =link_to 'Добавить работу', new_work_path
-                - unless current_user.has_role? :jury
+                - unless current_user.has_role? :jury && !User.not_active_jury.include?(current_user)
                   %li
                     =link_to 'Мои работы', user_works_path
                 %li

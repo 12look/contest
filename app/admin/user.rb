@@ -3,6 +3,7 @@ ActiveAdmin.register User do
 
   scope :all, default: true
   scope :participants
+  scope :juries
   scope :not_active_jury
 
   permit_params :first_name, :last_name, :email, :institution, :manager, :meta_type,
@@ -63,5 +64,13 @@ form do |f|
 
     f.actions
 end
+
+  # controller do
+  #   def create
+  #     create! do |format|
+  #       format.html { redirect_to '/admin/users' }
+  #     end
+  #   end
+  # end
 
 end

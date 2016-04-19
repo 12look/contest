@@ -4,6 +4,7 @@ class UserRegistrationsController < Devise::RegistrationsController
     meta_type = params[:user][:meta_type]
 
     params[:user].delete(:meta_type)
+    params[:user].delete(:meta)
 
     build_resource(sign_up_params)
 

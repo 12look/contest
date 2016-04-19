@@ -359,6 +359,12 @@ ru:
           remember_me: "Запомнить меня"
           sign_in_count: "Количество входов"
           created_at: "Дата регистрации"
+        meta:
+          middle_name: "Отчество"
+          rank: "Звание"
+          degree: "Степень"
+          manager: "Руководитель"
+          classroom: "Класс"
         jury:
           middle_name: "Отчество"
           rank: "Звание"
@@ -380,3 +386,4 @@ ru:
         all: "Все"
         not_active_jury: "Неактивированные жюри"
         participants: "Участники"
+        juries: "Жюри"

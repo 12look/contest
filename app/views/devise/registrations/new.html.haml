@@ -25,7 +25,7 @@
     .card-panel
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         .row
-          = my_devise_error_messages!
+          = devise_error_messages!
           .input-field.col.s12
             = f.label :first_name
             = f.text_field :first_name, class: 'validate', required: true

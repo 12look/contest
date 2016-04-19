@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 
   scope :not_active_jury, -> { joins(:roles).where(meta_type: 'Jury', roles: {name: :participant}) }
   scope :participants, -> { where(meta_type: 'Participant') }
+  scope :juries, -> { joins(:roles).where(roles: {name: :jury}) }
 
   accepts_nested_attributes_for :meta
 
@@ -25,13 +26,17 @@ class User < ActiveRecord::Base
 
   def build_meta(params)
     raise "Unknown itemizable_type: #{meta_type}" unless META_TYPES.include?(meta_type)
-    self.meta = meta_type.constantize.new(params)
+    if new_record?
+      self.meta = meta_type.constantize.new(params)
+    else
+      self.meta.update_attributes(params)
+    end
   end
 
   after_create :assign_default_role
 
   def assign_default_role
-    add_role(:participant)
+    add_role(:participant) if roles.first.nil?
   end
 
   def self.count_jury
