@@ -1,25 +1,28 @@
 .container
   .row
     .col.s12.m12.l8.offset-l2
-      .row#category
-        .input-field.col.s12.m12.l12
-          = select_tag "categories", options_for_select(Category.all.collect {|a| [a.name, a.id]}), {prompt: "ВСЕ РАБОТЫ", onchange: "update_works_div_top(this.value)", class: "browser-default"}
-      .row#works
-        - i = 0
-        - @works.each do |work|
-          - i = i + 1
-          .row.card-panel.top-work{class: ("teal lighten-4" if i==1)}
-            .row.top-title
-              .col.s12
-                %h5
-                  %b= i.to_s + ". " + work.name
-                %span= link_to work.user.first_name + " " + work.user.last_name, user_path(work.user)
-            .col.s6.m3.l3
-              .card.small
-                .card-image.center-block
-                  = link_to (image_tag work.file.url(:thumb)), work_path(work)
-            .col.s6.m3.l3.right
-              .circular-bar.tooltipped{'data-position':'top', 'data-delay': '50', 'data-tooltip': "Проголосовало #{work.count_jury} из #{User.count_jury}"}
-                %input.dial{"data-fgcolor": "#34495e", "data-height": "100", "data-linecap": "round", "data-width": "100", "data-step": "0.1", type: "text", value: "#{decimals(work.rait) > 3 ? work.rait.round(3) : work.rait}"}
-                .circular-bar-content
-                  %strong
+      - if @works.blank?
+        .card-panel.center.flow-text= 'К сожалению, пока нет работ, за которые проголосовали все члены жюри'
+      - else
+        .row#category
+          .input-field.col.s12.m12.l12
+            = select_tag "categories", options_for_select(Category.all.collect {|a| [a.name, a.id]}), {prompt: "ВСЕ РАБОТЫ", onchange: "update_works_div_top(this.value)", class: "browser-default"}
+        .row#works
+          - i = 0
+          - @works.each do |work|
+            - i = i + 1
+            .row.card-panel.top-work{class: ("teal lighten-4" if i==1)}
+              .row.top-title
+                .col.s12
+                  %h5
+                    %b= i.to_s + ". " + work.name
+                  %span= link_to work.user.first_name + " " + work.user.last_name, user_path(work.user)
+              .col.s6.m3.l3
+                .card.small
+                  .card-image.center-block
+                    = link_to (image_tag work.file.url(:thumb)), work_path(work)
+              .col.s6.m3.l3.right
+                .circular-bar.tooltipped{'data-position':'top', 'data-delay': '50', 'data-tooltip': "Проголосовало #{work.count_jury} из #{User.count_jury}"}
+                  %input.dial{"data-fgcolor": "#34495e", "data-height": "100", "data-linecap": "round", "data-width": "100", "data-step": "0.1", type: "text", value: "#{decimals(work.rait) > 3 ? work.rait.round(3) : work.rait}"}
+                  .circular-bar-content
+                    %strong
