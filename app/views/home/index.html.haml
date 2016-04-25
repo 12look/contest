@@ -20,11 +20,11 @@
 %section#works.container
   .section
     .row
-      %h4.col.s12.center Последние работы
+      .col.s12
+        %h4.main-header.center Последние работы
     .row
       - @works.each do |work|
         =render partial: 'partials/work', locals: {work: work}
     .row.center
-      %a.btn.waves-effect.waves-light{href: "#{works_path}"}
+      %a.btn.btn-large.waves-effect.waves-light{href: "#{works_path}"}
         все работы
-        %i.mdi-content-send.right

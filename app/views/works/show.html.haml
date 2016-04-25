@@ -7,37 +7,37 @@
     .col.s12.m12.l6
       .card
         .center
-          = image_tag @work.file.url(:medium), class: 'responsive-img', height: "400"
+          = image_tag @work.file.url(:medium), class: 'responsive-img', height: '400'
       - if @work.images.any?
         .card
           - @work.images.each do |image|
             .col.s6.m3.l3.center
               =link_to image_tag(image.image.url(:thumb), class: 'responsive-img small-preview'), image.image.url(:original), {'data-lightbox': 'roadtrip'}
     .col.s12.m12.l6
-      .card-panel.grey.lighten-5
-        .row
-          .col.s12.m6.offset-m3.center
-            - if can? :set_rating, @work and Rating.was_rait(@work, current_user).empty?
-              .card
-                = link_to 'Оценить', work_path(@work)+"/rating#rating", class: 'btn-flat waves-effect waves-teal'
-            - if current_user and current_user.has_role? :jury
-              .card
-                = link_to 'Скачать архив', @work.archive_url, class: 'btn-flat waves-effect waves-teal'
-            - if can? :update, @work and can? :destroy, @work
-              = link_to '<i class="material-icons">edit</i>'.html_safe, edit_work_path(@work), class: 'btn waves-effect waves-teal', title: 'Редактировать'
-              = link_to '<i class="material-icons">delete_forever</i>'.html_safe, @link, method: :delete, data: { confirm: 'Серьезно?' }, class: 'btn waves-effect waves-teal', title: 'Удалить'
-        %p
-          %b Добавил:
-          =link_to @work.user.first_name + ' ' + @work.user.last_name, user_path(@work.user)
-        %p
-          %b Категория:
+      .card-panel.grey.lighten-5.work-info
+        - if current_user
+          .row
+            .col.s12.m6.offset-m3.center
+              - if can? :set_rating, @work and Rating.was_rait(@work, current_user).empty?
+                .card
+                  = link_to 'Оценить', work_path(@work)+'/rating#rating', class: 'btn-flat waves-effect waves-teal'
+              - if current_user and current_user.has_role? :jury
+                .card
+                  = link_to 'Скачать архив', @work.archive_url, class: 'btn-flat waves-effect waves-teal'
+              - if can? :update, @work and can? :destroy, @work
+                = link_to '<i class="material-icons">edit</i>'.html_safe, edit_work_path(@work), class: 'btn waves-effect waves-teal', title: 'Редактировать'
+                = link_to '<i class="material-icons">delete_forever</i>'.html_safe, @link, method: :delete, data: { confirm: 'Серьезно?' }, class: 'btn waves-effect waves-teal', title: 'Удалить'
+        %p.work-info__author
+          %i.material-icons person
+          = link_to @work.user.first_name + ' ' + @work.user.last_name, user_path(@work.user)
+        %p.work-info__categ
+          %i.material-icons label
           = link_to @work.category.name, categories_path(@work.category)
-        %p
-          = simple_format @work.description
+        %p= simple_format @work.description
       .card-panel
-        %h5.center= "Общая оценка"
+        %h5.rating-header.center= 'Общая оценка'
         .circular-bar.tooltipped{'data-position':'top', 'data-delay': '50', 'data-tooltip': "Проголосовало #{@work.count_jury} из #{User.count_jury}"}
-          %input.dial{"data-fgcolor": "#34495e", "data-height": "150", "data-linecap": "round", "data-width": "150", "data-step": "0.1", type: "text", value: "#{(decimals(@allrait) > 3 ? @allrait.round(3) : @allrait) unless @allrait.nil?}"}
+          %input.dial{"data-fgcolor": '#34495e', "data-height": '150', "data-linecap": "round", "data-width": "150", "data-step": "0.1", type: "text", value: "#{(decimals(@allrait) > 3 ? @allrait.round(3) : @allrait) unless @allrait.nil?}"}
           .circular-bar-content
             %strong
-  = render "rating/new" if current_page? action: 'set_rating'
+  = render 'rating/new' if current_page? action: 'set_rating'

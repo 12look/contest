@@ -5,7 +5,7 @@
         .card-panel.center.flow-text= 'К сожалению, пока нет работ, за которые проголосовали все члены жюри'
       - else
         .row#category
-          .input-field.col.s12.m12.l12
+          .input-field.col.s12
             = select_tag "categories", options_for_select(Category.all.collect {|a| [a.name, a.id]}), {prompt: "ВСЕ РАБОТЫ", onchange: "update_works_div_top(this.value)", class: "browser-default"}
         .row#works
           - i = 0
@@ -19,7 +19,7 @@
                   %span= link_to work.user.first_name + " " + work.user.last_name, user_path(work.user)
               .col.s6.m3.l3
                 .card.small
-                  .card-image.center-block
+                  .card-image
                     = link_to (image_tag work.file.url(:thumb)), work_path(work)
               .col.s6.m3.l3.right
                 .circular-bar

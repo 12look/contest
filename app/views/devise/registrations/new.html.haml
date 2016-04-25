@@ -19,7 +19,7 @@
 
   resource.meta = child_class_name.constantize.new if resource.meta.nil?
 
-%h3.center= (meta_type == 'participant' ? 'Регистрация участника' : 'Регистрация жюри')
+%h4.upper.center= (meta_type == 'participant' ? 'Регистрация участника' : 'Регистрация жюри')
 .row
   .col.s12.m6.l6.offset-m3.offset-l3
     .card-panel

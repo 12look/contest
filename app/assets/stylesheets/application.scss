@@ -52,9 +52,20 @@ main {
   flex: 1 0 auto;
 }
 
-h3, h4 {
+.container .row {
+  margin: 0;
+}
+
+h4.main-header {
   text-transform: uppercase;
   font-size: 2rem;
+  padding: 10px 0;
+  border-top: 1px solid color("grey", "base");
+  border-bottom: 1px solid color("grey", "base");
+}
+
+.upper {
+  text-transform: uppercase;
 }
 
 .container {
@@ -210,11 +221,6 @@ ul.right li:hover {
     color: $black_100;
   }
 }
-.row h4.col {
-  padding: 10px 0;
-  border-top: 1px solid color("grey", "base");
-  border-bottom: 1px solid color("grey", "base");
-}
 
 .card.small {
   height: auto;
@@ -312,7 +318,7 @@ ul.right li:hover {
 }
 
 [type="checkbox"] + label:before {
-  left: -10px;
+  left: -5px;
 }
 
 [type="checkbox"]:checked + label:before {
@@ -447,11 +453,11 @@ ul.right li:hover {
     max-height: 30px;
 
     h5 {
-      padding-left: 3px;
+      margin-left: -8px;
     }
 
     span {
-      padding-left: 30px;
+      padding-left: 20px;
     }
   }
 
@@ -473,5 +479,39 @@ ul.right li:hover {
       max-height: 150px;
       padding: 0;
     }
+  }
+}
+
+.rating-header {
+  text-transform: uppercase;
+}
+
+.work-info {
+  &__author, &__categ {
+
+    margin: 0;
+
+    a {
+      padding-left: 5px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    i {
+      position: relative;
+      top: 6px;
+      color: #34495e;
+    }
+
+  }
+}
+
+footer.page-footer {
+  padding-top: 0;
+
+  .footer-copyright {
+    color: white;
   }
 }
