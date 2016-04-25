@@ -5,3 +5,11 @@ development:
   username: root
   password: root
   host: localhost
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: contest
+  username: root
+  password: root
+  host: localhost
