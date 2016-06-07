@@ -10,5 +10,13 @@ FactoryGirl.define do
     trait :fail_name do
       first_name 'А'
     end
+
+    trait :fail_last_name do
+      last_name 'А'
+    end
+
+    trait :fail_institution do
+      institution 'А'
+    end
   end
 end

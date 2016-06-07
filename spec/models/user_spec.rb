@@ -10,7 +10,15 @@ RSpec.describe User, type: :model do
     FactoryGirl.build(:user).should be_valid
   end
 
-  it 'has a not valid user name' do
+  it 'has a invalid user name' do
     FactoryGirl.build(:user, :fail_name).should_not be_valid
+  end
+
+  it 'has a invalid user last_name' do
+    FactoryGirl.build(:user, :fail_last_name).should_not be_valid
+  end
+
+  it 'has a invalid institution' do
+    FactoryGirl.build(:user, :fail_institution).should_not be_valid
   end
 end

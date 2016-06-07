@@ -48,6 +48,7 @@ end
 
 group :test do
   gem 'shoulda-matchers', require: false
+  gem 'capybara'
 end
 
 gem 'mysql2', '~> 0.3.20'

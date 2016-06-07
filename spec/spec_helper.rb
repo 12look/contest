@@ -19,10 +19,7 @@
 RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
-    c.syntax = :should
-  end
-  config.mock_with :rspec do |c|
-    c.syntax = :should
+    c.syntax = [:should, :expect]
   end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
