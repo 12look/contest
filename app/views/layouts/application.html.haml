@@ -39,6 +39,8 @@
               %li
                 =link_to 'работы', works_path, class: 'nav-el'
               %li
+                =link_to 'жюри', juries_list_path, class: 'nav-el'
+              %li
                 =link_to 'Вход', new_user_session_path, class: 'nav-el'
               %li
                 =link_to 'Регистрация', user_register_path, class: 'nav-el'
@@ -52,11 +54,15 @@
               %li
                 =link_to 'работы', works_path, class: 'btn teal waves-effect'
               %li
+                =link_to 'жюри', juries_list_path, class: 'btn teal waves-effect'
+              %li
                 =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
           - else
             %ul.right.hide-on-med-and-down
               %li
                 =link_to 'работы', works_path, class: 'nav-el'
+              %li
+                =link_to 'жюри', juries_list_path, class: 'nav-el'
               %li
                 %a.nav-el.dropdown_menu_button{href: "#!", "data-activates": "dropdown1" }
                   = current_user.first_name
@@ -70,6 +76,8 @@
                   %i.mdi-navigation-arrow-drop-down.right
               %li
                 =link_to 'работы', works_path, class: 'btn teal waves-effect'
+              %li
+                =link_to 'жюри', juries_list_path, class: 'btn teal waves-effect'
               %li
                 =link_to 'Топ 10', top_path, class: 'btn red waves-effect'
               %ul#dropdown2.dropdown-content

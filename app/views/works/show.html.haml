@@ -23,7 +23,7 @@
                   = link_to 'Оценить', work_path(@work)+'/rating#rating', class: 'btn-flat waves-effect waves-teal'
               - if current_user and current_user.has_role? :jury
                 .card
-                  = link_to 'Скачать архив', @work.archive_url, class: 'btn-flat waves-effect waves-teal'
+                  = link_to 'Скачать архив', @work.archive_url, class: 'btn-flat waves-effect waves-teal', rel: 'noopener noreferrer', target: '_blank'
               - if can? :update, @work and can? :destroy, @work
                 = link_to '<i class="material-icons">edit</i>'.html_safe, edit_work_path(@work), class: 'btn waves-effect waves-teal', title: 'Редактировать'
                 = link_to '<i class="material-icons">delete_forever</i>'.html_safe, @link, method: :delete, data: { confirm: 'Серьезно?' }, class: 'btn waves-effect waves-teal', title: 'Удалить'

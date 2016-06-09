@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     render 'home/index'
   end
 
+  def juries
+    @juries = User.juries
+    render 'home/juries'
+  end
+
 	protected
 
   def configure_permitted_parameters

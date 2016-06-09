@@ -1,0 +1,14 @@
+.container
+  .row
+    .col.s12.m12.l8.offset-l2
+      - if @juries.blank?
+        .card-panel.center.flow-text= 'На данный момент в системе не зарегистрировано ни одного члена жюри'
+      - else
+        %ul.collection.with-header
+          %li.collection-header
+            %h4.center Список членов жюри
+          - @juries.each do |jury|
+            %li.collection-item
+              = jury.last_name + ' ' + jury.first_name + ' ' + jury.meta.middle_name + ' '
+              %br
+              %span.grey-text= '(' + jury.institution + ', ' + jury.meta.degree + ', ' + jury.meta.rank + ')'

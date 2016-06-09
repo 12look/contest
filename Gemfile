@@ -42,7 +42,10 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'shoulda-matchers'
+
+  gem "metric_fu"
+  gem "rails_best_practices"
+  gem 'railroady'
 end
 
 

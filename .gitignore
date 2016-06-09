@@ -20,5 +20,7 @@
 .idea
 /public/system
 /public/assets
+/doc
+
 .env
 задание.txt
