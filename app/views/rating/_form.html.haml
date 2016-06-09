@@ -6,4 +6,4 @@
         %p= criterion.name
         = select_tag "size[#{criterion.id}]", options_for_select((1..10).step(1))
       .center
-        = submit_tag 'Оценить', class: 'btn'
+        = submit_tag 'Оценить', data: { confirm: 'Это окончательный вариант оценки?' }, class: 'btn'
