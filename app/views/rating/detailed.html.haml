@@ -18,9 +18,10 @@
                 %span.grey-text= '(' + rait[:user].institution + ', ' + rait[:user].meta.degree + ', ' + rait[:user].meta.rank + ')'
               .col.s6.center.rating
                 = (decimals(rait[:rating]) > 3 ? rait[:rating].round(3) : rait[:rating])
-            .collapsible-body.row
+            .collapsible-body
               - rait[:detail].each do |d|
-                .col.s6.center
-                  = d[:cr_name]
-                .col.s6.center
-                  = d[:cr_size]
+                .row
+                  .col.s6.center
+                    = d[:cr_name]
+                  .col.s6.center
+                    = d[:cr_size]
