@@ -1,0 +1,26 @@
+.container
+  .row
+    .col.s12.m12.l8.offset-l2
+      %p.flow-text
+        ='Оценки работы "'
+        =link_to @work.name, work_path(@work)
+        ='"'
+      %span.grey-text= "Проголосовало #{@rait.count} из #{User.count_jury}"
+  .row
+    .col.s12.m12.l8.offset-l2
+      %ul.collapsible{data: {collapsible: 'accordion'}}
+        - @rait.each do |rait|
+          %li
+            .collapsible-header.row
+              .col.s6
+                = rait[:user].last_name + ' ' + rait[:user].first_name + ' ' + rait[:user].meta.middle_name
+                %br
+                %span.grey-text= '(' + rait[:user].institution + ', ' + rait[:user].meta.degree + ', ' + rait[:user].meta.rank + ')'
+              .col.s6.center.rating
+                = (decimals(rait[:rating]) > 3 ? rait[:rating].round(3) : rait[:rating])
+            .collapsible-body.row
+              - rait[:detail].each do |d|
+                .col.s6.center
+                  = d[:cr_name]
+                .col.s6.center
+                  = d[:cr_size]

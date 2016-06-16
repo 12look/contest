@@ -1,6 +1,6 @@
 class WorksController < ApplicationController
-  before_action :set_work, only: [:show, :edit, :update, :destroy, :set_rating]
-  before_action :authenticate_user!, except: [:index, :show, :top]
+  before_action :set_work, only: [:show, :edit, :update, :destroy, :set_rating, :detailed_rating]
+  before_action :authenticate_user!, except: [:index, :show, :top, :detailed_rating]
   # before_action :authorized_user, only: [:edit, :update, :destroy]
 
   authorize_resource only: [:create, :edit, :update, :destroy]
@@ -8,6 +8,19 @@ class WorksController < ApplicationController
   def user_works
     @works = current_user.works.order('created_at DESC').page(params[:page])
     render 'works/myworks'
+  end
+
+  def detailed_rating
+    @rait = []
+    @work.ratings.select('user_id').uniq.each do |rating|
+      detail = []
+      @work.ratings.where('user_id = ?', rating.user).each do |r|
+        detail << {cr_name: r.criterion.name, cr_size: r.size}
+      end
+      @rait << {user: rating.user, rating: Rating.was_rait(@work, rating.user).all.average(:size), detail: detail}
+    end
+
+    render 'rating/detailed'
   end
 
   def set_rating

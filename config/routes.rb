@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '/cat/:category_id' =>  'works#update_works', as: :fetch_items
   get '/categories/:category_id' => 'categories#show', as: :categories
   get '/top/(:category_id)' => 'works#top', as: :top
+  get '/works/:id/detailed_rating' => 'works#detailed_rating', as: :detailed
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
