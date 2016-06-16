@@ -19,9 +19,11 @@
               .col.s6.center.rating
                 = (decimals(rait[:rating]) > 3 ? rait[:rating].round(3) : rait[:rating])
             .collapsible-body
+              - i = 1
               - rait[:detail].each do |d|
                 .row
+                  .col.s6
+                    .cr_name= "#{i}. #{d[:cr_name]}"
                   .col.s6.center
-                    = d[:cr_name]
-                  .col.s6.center
-                    = d[:cr_size]
+                    .cr_size= d[:cr_size]
+                - i = i + 1
