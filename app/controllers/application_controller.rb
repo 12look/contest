@@ -5,16 +5,6 @@ class ApplicationController < ActionController::Base
 
 	before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  def index
-    @works = Work.all.order('created_at DESC').limit(4)
-    render 'home/index'
-  end
-
-  def juries
-    @juries = User.juries
-    render 'home/juries'
-  end
-
 	protected
 
   def configure_permitted_parameters
